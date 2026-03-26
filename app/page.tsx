@@ -12,12 +12,13 @@ import WorkSection from "@/components/sections/Work/WorkSection";
 
 import FeaturesSection from "@/components/sections/Home/FeaturesSection";
 import Services from "@/components/sections/Home/Services";
+import HighlightedFeatures from "@/components/sections/Features/HighlightedFeatures";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <FeaturesSection />
+      <HighlightedFeatures />
       <InfoSection />
 
       <Services />
