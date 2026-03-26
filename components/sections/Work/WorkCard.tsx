@@ -2,9 +2,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, useInView, animate, AnimatePresence } from 'framer-motion';
+import { motion, useInView, animate, AnimatePresence, Variants } from 'framer-motion';
 import Link from 'next/link';
 
+// Fixed Stat Interface
 interface Stat {
   targetValue: number;
   label: string;
@@ -13,6 +14,7 @@ interface Stat {
   decimals?: number;
 }
 
+// Fixed Props Interface
 interface WorkCardProps {
   imageSrc: string;
   flagSrc: string;
@@ -24,10 +26,17 @@ interface WorkCardProps {
   href: string;
 }
 
+// Fix for StatBox Props
+interface StatBoxProps extends Stat {
+  isInView: boolean;
+  index: number;
+}
+
 export default function WorkCard({ 
   imageSrc, flagSrc, title, description, meta, metrics, footerParts, href 
 }: WorkCardProps) {
-  const ref = useRef(null);
+  // Fix: Added HTMLDivElement type to the ref
+  const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [footerIndex, setFooterIndex] = useState(0);
 
@@ -38,7 +47,8 @@ export default function WorkCard({
     return () => clearInterval(timer);
   }, [footerParts.length]);
 
-  const itemReveal = {
+  // Fix: Explicitly typed Variants for Framer Motion
+  const itemReveal: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (custom: number) => ({
       opacity: 1,
@@ -49,7 +59,7 @@ export default function WorkCard({
 
   return (
     <div ref={ref} className="w-full group px-2 md:px-4">
-      {/* 1. IMAGE CONTAINER - Slightly shorter aspect for desktop elegance */}
+      {/* 1. IMAGE CONTAINER */}
       <motion.div
         initial={{ opacity: 0, scale: 1.02, y: 30 }}
         animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
@@ -65,7 +75,7 @@ export default function WorkCard({
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-700" />
       </motion.div>
 
-      {/* 2. INFO HEADER - Refined spacing */}
+      {/* 2. INFO HEADER */}
       <div className="px-1 md:px-2">
         <div className="flex justify-between items-start mb-3 md:mb-4">
           <motion.h3 
@@ -87,7 +97,7 @@ export default function WorkCard({
         </motion.p>
       </div>
 
-      {/* 3. STATS GRID - More compact on desktop */}
+      {/* 3. STATS GRID */}
       <div className="grid grid-cols-2 gap-2 md:gap-3 mb-6 md:mb-8 px-1">
         {metrics.map((metric, index) => (
           <StatBox key={index} {...metric} isInView={isInView} index={index} />
@@ -131,7 +141,8 @@ export default function WorkCard({
   );
 }
 
-function StatBox({ targetValue, label, prefix = "", suffix = "", decimals = 0, isInView, index }: any) {
+// Fix: Removed 'any' and applied StatBoxProps interface
+function StatBox({ targetValue, label, prefix = "", suffix = "", decimals = 0, isInView, index }: StatBoxProps) {
   const [displayValue, setDisplayValue] = useState(prefix + "0" + suffix);
   
   useEffect(() => {

@@ -1,2 +1,16 @@
 @import "tailwindcss";
 
+/* src/app/globals.css */
+
+@layer utilities {
+  /* This hides the scrollbar in Chrome, Safari, and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* This hides the scrollbar in IE, Edge, and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}

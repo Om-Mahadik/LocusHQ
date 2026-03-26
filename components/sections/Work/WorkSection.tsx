@@ -55,16 +55,15 @@ const projects = [
 
 
 
-
 export default function WorkSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Track horizontal scroll progress of this specific container
+  // Track horizontal scroll progress
   const { scrollXProgress } = useScroll({
     container: containerRef,
   });
 
-  // Create a smooth spring for the progress bar width
+  // Smooth spring for the custom indicator
   const scaleX = useSpring(scrollXProgress, {
     stiffness: 100,
     damping: 30,
@@ -73,7 +72,7 @@ export default function WorkSection() {
 
   return (
     <section className="bg-black text-white py-24 md:py-32 overflow-hidden">
-      {/* 1. Heading Section */}
+      {/* 1. Heading */}
       <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24 px-6">
         <h2 className="text-5xl md:text-7xl font-semibold mb-6 tracking-tighter">Work</h2>
         <p className="text-zinc-500 text-base md:text-lg max-w-xl mx-auto font-light leading-relaxed">
@@ -81,17 +80,17 @@ export default function WorkSection() {
         </p>
       </div>
 
-      {/* 2. Slide Hint (Desktop Only) */}
+      {/* 2. Slide Hint */}
       <div className="hidden md:flex items-center justify-center gap-4 mb-14">
         <span className="text-[9px] uppercase tracking-[0.5em] font-bold text-zinc-600">
           Scroll to explore
         </span>
       </div>
 
-      {/* 3. The Horizontal Scroller */}
+      {/* 3. The Scroller (Crucial: Added 'scrollbar-hide' class) */}
       <div 
         ref={containerRef}
-        className="flex flex-col md:flex-row md:overflow-x-auto gap-12 md:gap-20 px-6 md:px-0 md:pl-[36vw] pb-24 no-scrollbar md:snap-x md:snap-mandatory cursor-grab active:cursor-grabbing"
+        className="flex flex-col md:flex-row md:overflow-x-auto gap-12 md:gap-20 px-6 md:px-0 md:pl-[36vw] pb-24 scrollbar-hide md:snap-x md:snap-mandatory cursor-grab active:cursor-grabbing"
       >
         {projects.map((project) => (
           <div key={project.id} className="flex-shrink-0 w-full md:w-[28vw] md:snap-center">
@@ -99,16 +98,17 @@ export default function WorkSection() {
           </div>
         ))}
         
-        {/* Spacer to allow the last card to center perfectly */}
         <div className="hidden md:block flex-shrink-0 w-[36vw]" />
       </div>
 
-      {/* 4. PREMIUM DARK SLIDER (Progress Bar) */}
-      <div className="hidden md:block max-w-[200px] mx-auto mt-4 px-4">
-        <div className="h-[2px] w-full bg-zinc-900 rounded-full overflow-hidden relative">
+      {/* 4. CUSTOM DARK PROGRESS TRACKER */}
+      <div className="hidden md:block max-w-[240px] mx-auto mt-8 px-4">
+        {/* The Track (Darker Gray) */}
+        <div className="h-[1.5px] w-full bg-zinc-800/50 rounded-full overflow-hidden relative">
+          {/* The Indicator (Lighter Gray/White) */}
           <motion.div 
             style={{ scaleX }}
-            className="absolute inset-0 bg-zinc-400 origin-left rounded-full"
+            className="absolute inset-0 bg-zinc-200 origin-left rounded-full shadow-[0_0_8px_rgba(255,255,255,0.1)]"
           />
         </div>
       </div>
