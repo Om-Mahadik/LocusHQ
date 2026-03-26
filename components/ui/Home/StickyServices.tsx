@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, Variants } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 const serviceData = [
   { id: "01", icon: "/icons/s1.svg", title: "Hospitality & Restaurant", sub: "Fill tables. Build regulars.", img: "/images/hospitality.webp", desc: "Meta and Google campaigns for restaurants and cloud kitchens. Hyper-local targeting and WhatsApp funnels." },
@@ -12,102 +12,82 @@ const serviceData = [
   { id: "06", icon: "/icons/s6.svg", title: "B2B Professional Services", sub: "High-ticket. Long-cycle.", img: "/images/b2b.webp", desc: "LinkedIn and Meta frameworks for consultants. We solve the 'empty pipeline' problem with automated outreach." },
 ];
 
-export default function StickyServices() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
+export default function StickyStackedServices() {
   return (
-    <div 
-      ref={containerRef} 
-      className="relative max-w-6xl mx-auto px-6 pb-[60vh]" // Added large bottom padding so the last card has room to "stick"
-    >
-      <div className="flex flex-col">
+    <div className="relative w-full bg-black px-2 md:px-6 py-24">
+      {/* NEW: Added gap-16 md:gap-32 to the container. 
+        This is what creates the massive space between the cards 
+        AS THEY SCROLL UP from below, before they stick. 
+      */}
+      <div className="max-w-5xl mx-auto flex flex-col gap-16 md:gap-32 pb-[40vh]">
         {serviceData.map((service, index) => {
-          const step = 1 / serviceData.length;
-          const start = index * step;
-          const end = (index + 1) * step;
-
-          // Icon Highlight Transform
-          const filterValue = useTransform(
-            scrollYProgress,
-            [start, start + 0.05, end - 0.05, end],
-            [
-              "grayscale(1) opacity(0.2)", 
-              "sepia(1) saturate(10) hue-rotate(-30deg) opacity(1)", 
-              "sepia(1) saturate(10) hue-rotate(-30deg) opacity(1)", 
-              "grayscale(1) opacity(0.2)"
-            ]
-          );
-
-          // Card Stacking Math: 100px base + 60px increments for visible headers
-          const topOffset = 100 + index * 60; 
+          
+          // Slightly increased the stacking offset so the headers have more room to breathe
+          const topOffset = 40 + index * 100;
 
           return (
-            <div 
-              key={service.id} 
-              className="sticky w-full mb-[30vh] last:mb-0" 
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.5 }}
+              className="sticky w-full flex items-start gap-2 md:gap-8"
               style={{ top: `${topOffset}px` }}
             >
-              <div className="flex items-start gap-8 md:gap-14 group">
+              
+              {/* Left Side Icon */}
+              <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-[#111] border border-white/10 flex items-center justify-center flex-shrink-0 mt-6 md:mt-8 shadow-xl relative z-10">
+                {service.icon ? (
+                  <img src={service.icon} alt="" className="w-4 h-4 md:w-7 md:h-7 object-contain opacity-80" />
+                ) : (
+                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-[#f26c4f]" /> 
+                )}
+              </div>
+
+              {/* The Card */}
+              <div className="flex-1 bg-[#0A0A0A] border border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-10 shadow-[0_-40px_60px_-15px_rgba(0,0,0,0.85)] min-h-[500px] flex flex-col relative z-0">
                 
-                {/* 1. THE ICON: Increased size and precise top margin */}
-                <div className="mt-[6px] md:mt-[10px]"> 
-                  <motion.div 
-                    style={{ filter: filterValue }}
-                    className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 transition-all duration-500"
-                  >
-                    <img 
-                      src={service.icon} 
-                      alt="" 
-                      className="w-full h-full object-contain"
-                    />
-                  </motion.div>
+                {/* Header */}
+                <div className="mb-6 md:mb-12">
+                  <h3 className="text-xl md:text-3xl font-bold tracking-tight text-white">
+                    {service.title}
+                  </h3>
+                  <p className="text-zinc-500 text-sm md:text-base font-medium mt-1 md:mt-2">
+                    {service.sub}
+                  </p>
                 </div>
 
-                {/* 2. THE CARD */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-5%" }}
-                  className="flex-1 bg-[#0A0A0A] rounded-[48px] border border-white/[0.04] p-10 md:p-14 shadow-[0_-40px_100px_-20px_rgba(0,0,0,1)] overflow-hidden"
-                >
-                  {/* Title & Subtitle Group */}
-                  <div className="space-y-2 mb-10">
-                    <h3 className="text-2xl md:text-4xl font-bold tracking-tighter text-white uppercase leading-none">
-                      {service.title}
-                    </h3>
-                    <p className="text-zinc-700 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em]">
-                      {service.sub}
+                {/* Content Body */}
+                <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-stretch flex-1">
+                  
+                  {/* NEW: Image Container Max Height. 
+                    Removed aspect-video on desktop. Replaced with h-full and a massive min-h-[400px] lg:min-h-[500px].
+                  */}
+                  <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-full md:min-h-[400px] lg:min-h-[500px] rounded-[1.5rem] md:rounded-[2rem] bg-[#111] border border-white/5 overflow-hidden order-1 md:order-2">
+                    {service.img && (
+                      <img 
+                        src={service.img} 
+                        alt={service.title} 
+                        className="absolute inset-0 w-full h-full object-cover opacity-80" 
+                      />
+                    )}
+                  </div>
+
+                  {/* Text Content - Centered vertically to match the tall image */}
+                  <div className="order-2 md:order-1 w-full flex flex-col justify-center">
+                    <p className="text-zinc-400 text-sm md:text-lg leading-relaxed">
+                      {service.desc}
                     </p>
+                    
+                    <button className="mt-8 md:mt-12 px-6 py-3 md:py-4 rounded-full bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-colors w-full md:w-max px-10">
+                      Learn More
+                    </button>
                   </div>
 
-                  {/* High-Contrast Image Container */}
-                  <div className="relative aspect-[16/9] rounded-[32px] bg-[#111] border border-white/5 mb-10 overflow-hidden group-hover:border-white/10 transition-colors">
-                    <img 
-                      src={service.img} 
-                      alt={service.title} 
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-90 group-hover:opacity-100" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  </div>
-
-                  {/* Minimal Body Text */}
-                  <p className="text-zinc-500 text-[14px] md:text-[16px] leading-relaxed max-w-2xl font-medium">
-                    {service.desc}
-                  </p>
-
-                  {/* Design Detail: Bottom ID */}
-                  <div className="mt-12 pt-8 border-t border-white/[0.03] flex justify-between items-center opacity-20">
-                    <span className="text-[10px] font-mono tracking-widest uppercase">system_protocol_0{service.id}</span>
-                    <div className="h-[1px] w-12 bg-white" />
-                  </div>
-                </motion.div>
+                </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
