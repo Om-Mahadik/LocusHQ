@@ -8,6 +8,7 @@ import ProcessSection from "@/components/sections/Home/ProcessSection";
 import { Info } from "lucide-react";
 import InfoSection from "@/components/sections/Home/InfoSection";
 import LeadJourneySection from "@/components/sections/Home/LeadJourneySection";
+import WorkSection from "@/components/sections/Work/WorkSection";
 
 import FeaturesSection from "@/components/sections/Home/FeaturesSection";
 import Services from "@/components/sections/Home/Services";
@@ -21,7 +22,8 @@ export default function Home() {
 
       <Services />
 
-      <ProcessSection />
+
+      <WorkSection />
       <LeadJourneySection />
       
       <TestimonialsSection />

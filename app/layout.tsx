@@ -1,5 +1,6 @@
 import Footer from "@/components/sections/Layout/Footer";
 import MNavbar from "@/components/sections/Layout/MNavbar"; // Ensure the path is correct
+import Navbar from "@/components/sections/Layout/Navbar";
 import "./globals.css";
 
 export const metadata = {
@@ -16,6 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-black text-white flex flex-col min-h-screen">
         {/* Called here: Visible on mobile only due to internal md:hidden class */}
+
+
         <MNavbar />
         
         <main className="flex-1">
