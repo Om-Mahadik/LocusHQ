@@ -13,6 +13,10 @@ const HeroSection = () => {
     { src: "/icons/usa-flag.svg", alt: "USA" },
   ];
 
+  const [systemColor, setSystemColor] = React.useState("#e4d615");
+const [showHint, setShowHint] = React.useState(true);
+const colorInputRef = React.useRef<HTMLInputElement>(null);
+
   return (
     <section className="relative min-h-screen w-full bg-[#000] text-white flex flex-col items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
       
@@ -42,15 +46,48 @@ const HeroSection = () => {
 
       {/* 3. High-Impact Headline */}
       <div className="text-center max-w-5xl z-10">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-[48px] md:text-[110px] font-bold tracking-[-0.04em] mb-6 leading-[0.9] md:leading-[0.85]"
-        >
-          We Build <br /> 
-          <span className="text-green italic font-medium">Growth Systems.</span>
-        </motion.h1>
+
+
+
+
+<motion.h1 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  className="relative text-[40px] md:text-[88px] font-bold tracking-tight mb-6 leading-[1.1] md:leading-[0.95]"
+>
+  We Build <br className="md:hidden" /> 
+  <span 
+    className="font-semibold cursor-pointer relative group"
+    style={{ color: systemColor }}
+    onClick={() => {
+      colorInputRef.current?.click();
+      setShowHint(false);
+    }}
+  >
+    Growth Systems.
+    
+    {/* Visual Hint for Client */}
+    {showHint && (
+      <span className="absolute -top-8 left-0 text-[10px] font-medium bg-white text-black px-2 py-1 rounded flex items-center gap-1 animate-bounce">
+        Click to change color
+      </span>
+    )}
+  </span>
+
+  {/* Hidden Color Picker */}
+  <input 
+    ref={colorInputRef}
+    type="color" 
+    value={systemColor}
+    onChange={(e) => setSystemColor(e.target.value)}
+    className="absolute opacity-0 pointer-events-none"
+  />
+</motion.h1>
+
+
+
+
         
         <motion.p 
           initial={{ opacity: 0 }}
