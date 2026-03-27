@@ -2,94 +2,138 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const serviceData = [
-  { id: "01", icon: "/icons/s1.svg", title: "Hospitality & Restaurant", sub: "Fill tables. Build regulars.", img: "/images/hospitality.webp", desc: "Meta and Google campaigns for restaurants and cloud kitchens. Hyper-local targeting and WhatsApp funnels." },
-  { id: "02", icon: "/icons/s2.svg", title: "Real Estate Generation", sub: "Buyer leads. Seller leads.", img: "/images/realestate.webp", desc: "Structured around qualified property inquiries. One closed deal pays for 12 months of our service." },
-  { id: "03", icon: "/icons/s3.svg", title: "Med Spa & Aesthetic", sub: "Botox. Laser. Filler.", img: "/images/medspa.webp", desc: "High-intent campaigns for aesthetic clinics. We build the offer and automate the follow-up infrastructure." },
-  { id: "04", icon: "/icons/s4.svg", title: "Home Services Scaling", sub: "Roofing. HVAC. Plumbing.", img: "/images/homeservices.webp", desc: "Dominating local search and social feeds. We engineer lead flows that keep technicians on the road." },
-  { id: "05", icon: "/icons/s5.svg", title: "E-commerce Engineering", sub: "Scale spend. Maintain ROAS.", img: "/images/ecommerce.webp", desc: "Advanced attribution modeling and dynamic creative testing. Your ad account as a high-yield investment." },
-  { id: "06", icon: "/icons/s6.svg", title: "B2B Professional Services", sub: "High-ticket. Long-cycle.", img: "/images/b2b.webp", desc: "LinkedIn and Meta frameworks for consultants. We solve the 'empty pipeline' problem with automated outreach." },
+  {
+    id: "01",
+    title: "Hospitality & Restaurant",
+    sub: "Fill tables. Build regulars.",
+    img: "/images/hospitality.webp",
+    metrics: [
+      { value: "12x", label: "Avg ROI" },
+      { value: "45k+", label: "Leads Gen" },
+      { value: "2.4M", label: "Revenue" },
+      { value: "85%", label: "Fill Rate" },
+    ],
+  },
+  {
+    id: "02",
+    title: "Real Estate Generation",
+    sub: "Buyer leads. Seller leads.",
+    img: "/images/realestate.webp",
+    metrics: [
+      { value: "8x", label: "Avg ROI" },
+      { value: "12k+", label: "Buyer Leads" },
+      { value: "$45M", label: "Property Sold" },
+      { value: "92%", label: "Qual Rate" },
+    ],
+  },
+  {
+    id: "03",
+    title: "Med Spa & Aesthetic",
+    sub: "Botox. Laser. Filler.",
+    img: "/images/medspa.webp",
+    metrics: [
+      { value: "15x", label: "Avg ROI" },
+      { value: "8k+", label: "Appointments" },
+      { value: "$2.1M", label: "Client Rev" },
+      { value: "95%", label: "Retention" },
+    ],
+  },
 ];
 
 export default function StickyStackedServices() {
   return (
-    <div className="relative w-full bg-black px-2 md:px-6 py-24">
-      {/* NEW: Added gap-16 md:gap-32 to the container. 
-        This is what creates the massive space between the cards 
-        AS THEY SCROLL UP from below, before they stick. 
-      */}
-      <div className="max-w-5xl mx-auto flex flex-col gap-16 md:gap-32 pb-[40vh]">
-        {serviceData.map((service, index) => {
-          
-          // Slightly increased the stacking offset so the headers have more room to breathe
-          const topOffset = 40 + index * 100;
+    <div className="relative w-full bg-black px-3 md:px-6 py-0">
+      <div className="max-w-6xl mx-auto flex flex-col gap-[30vh] pb-[20vh] mt-32">
+        {serviceData.map((service) => (
+          <motion.div
+            key={service.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-5%" }}
+            transition={{ duration: 0.5 }}
+            className="sticky top-28 w-full"
+          >
+            {/* --- MOBILE VERSION (Original Code) --- */}
+            <div className="md:hidden w-full bg-[#0D0D0D] border border-white/10 rounded-[1.5rem] p-6 flex flex-col gap-5 shadow-[0_-20px_60px_-15px_rgba(0,0,0,1)]">
+              <div className="flex flex-col gap-0.5">
+                <h3 className="text-xl font-semibold tracking-tight text-white">
+                  {service.title}
+                </h3>
+                <p className="text-zinc-500 text-sm font-medium">{service.sub}</p>
+              </div>
 
-          return (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.5 }}
-              className="sticky w-full flex items-start gap-2 md:gap-8"
-              style={{ top: `${topOffset}px` }}
-            >
-              
-              {/* Left Side Icon */}
-              <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-[#111] border border-white/10 flex items-center justify-center flex-shrink-0 mt-6 md:mt-8 shadow-xl relative z-10">
-                {service.icon ? (
-                  <img src={service.icon} alt="" className="w-4 h-4 md:w-7 md:h-7 object-contain opacity-80" />
+              <div className="w-full h-40 relative rounded-xl bg-zinc-900 overflow-hidden border border-white/10">
+                {service.img ? (
+                  <img
+                    src={service.img}
+                    alt={service.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-70"
+                  />
                 ) : (
-                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-[#f26c4f]" /> 
+                  <div className="absolute inset-0 flex items-center justify-center text-zinc-800 text-xs">Preview</div>
                 )}
               </div>
 
-              {/* The Card */}
-              <div className="flex-1 bg-[#0A0A0A] border border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-10 shadow-[0_-40px_60px_-15px_rgba(0,0,0,0.85)] min-h-[500px] flex flex-col relative z-0">
-                
-                {/* Header */}
-                <div className="mb-6 md:mb-12">
-                  <h3 className="text-xl md:text-3xl font-bold tracking-tight text-white">
+              <div className="grid grid-cols-2 gap-4 py-5 border-y border-white/5">
+                {service.metrics.map((metric, idx) => (
+                  <div key={idx} className="flex flex-col gap-0.5">
+                    <span className="text-xl font-bold text-white tracking-tighter">{metric.value}</span>
+                    <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">{metric.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button className="group flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl bg-white text-black text-xs font-bold">
+                View Case Studies
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* --- DESKTOP VERSION (Image Left, Content Right) --- */}
+            <div className="hidden md:flex w-full bg-[#0D0D0D] border border-white/10 rounded-[2rem] p-10 flex-row gap-12 items-center shadow-[0_-20px_60px_-15px_rgba(0,0,0,1)]">
+              {/* Image Left */}
+              <div className="w-1/2 h-[420px] relative rounded-2xl bg-zinc-900 overflow-hidden border border-white/10">
+                {service.img ? (
+                  <img
+                    src={service.img}
+                    alt={service.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-500 hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-zinc-800 font-medium">Preview</div>
+                )}
+              </div>
+
+              {/* Content Right */}
+              <div className="w-1/2 flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <span className="text-zinc-600 text-sm font-bold uppercase tracking-widest">{service.id}</span>
+                  <h3 className="text-4xl font-semibold tracking-tight text-white leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-zinc-500 text-sm md:text-base font-medium mt-1 md:mt-2">
-                    {service.sub}
-                  </p>
+                  <p className="text-zinc-500 text-lg font-medium">{service.sub}</p>
                 </div>
 
-                {/* Content Body */}
-                <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-stretch flex-1">
-                  
-                  {/* NEW: Image Container Max Height. 
-                    Removed aspect-video on desktop. Replaced with h-full and a massive min-h-[400px] lg:min-h-[500px].
-                  */}
-                  <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-full md:min-h-[400px] lg:min-h-[500px] rounded-[1.5rem] md:rounded-[2rem] bg-[#111] border border-white/5 overflow-hidden order-1 md:order-2">
-                    {service.img && (
-                      <img 
-                        src={service.img} 
-                        alt={service.title} 
-                        className="absolute inset-0 w-full h-full object-cover opacity-80" 
-                      />
-                    )}
-                  </div>
-
-                  {/* Text Content - Centered vertically to match the tall image */}
-                  <div className="order-2 md:order-1 w-full flex flex-col justify-center">
-                    <p className="text-zinc-400 text-sm md:text-lg leading-relaxed">
-                      {service.desc}
-                    </p>
-                    
-                    <button className="mt-8 md:mt-12 px-6 py-3 md:py-4 rounded-full bg-white/5 border border-white/10 text-white text-sm font-medium hover:bg-white/10 transition-colors w-full md:w-max px-10">
-                      Learn More
-                    </button>
-                  </div>
-
+                <div className="grid grid-cols-2 gap-8 py-8 border-y border-white/5">
+                  {service.metrics.map((metric, idx) => (
+                    <div key={idx} className="flex flex-col gap-1">
+                      <span className="text-3xl font-bold text-white tracking-tighter">{metric.value}</span>
+                      <span className="text-xs text-zinc-500 uppercase font-bold tracking-wider">{metric.label}</span>
+                    </div>
+                  ))}
                 </div>
+
+                <button className="group flex items-center justify-center gap-2 w-fit px-8 py-4 rounded-xl bg-white text-black text-sm font-bold hover:bg-zinc-200 transition-all active:scale-95">
+                  View Case Studies
+                  <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </button>
               </div>
-            </motion.div>
-          );
-        })}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import React from "react";
 const features = [
   "GoHighLevel (GHL)",
   "ManyChat Flows",
-  "AI-Assisted Creative & Copy",
+  "AI Creative & Copy",
   "Multi-Platform Attribution"
 ];
 
@@ -13,32 +13,32 @@ export default function LeadJourneyContent() {
   return (
     <div className="flex flex-col items-center md:items-start text-center md:text-left">
       {/* Main Headline */}
-      <h2 className="text-[32px] md:text-[48px] font-bold text-white leading-[1.1] tracking-tight mb-8">
+      <h2 className="text-[28px] md:text-[42px] font-bold text-white leading-[1.1] tracking-tight mb-6">
         Every lead gets a journey.<br />
         Not a follow-up email.
       </h2>
 
       {/* Description Body */}
-      <p className="text-zinc-500 max-w-2xl md:max-w-xl leading-relaxed mb-12 text-[15px] md:text-[17px] font-medium">
+      <p className="text-zinc-400 max-w-[380px] md:max-w-lg leading-relaxed mb-10 text-[15px] md:text-[16px] font-medium">
         Most agencies hand you a lead and walk away. We build what happens next. 
         A prospect clicks your ad at 11pm. Within 4 minutes, they receive a 
-        personalised WhatsApp message, get qualified through a conversational 
-        flow, and find themselves looking at your calendar — before you even 
-        woken up. This is not a feature. This is the product.
+        personalised WhatsApp message and get qualified.
       </p>
 
-      {/* 2x2 Grid for both PC and Mobile */}
-      <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:gap-x-12 w-full max-w-fit">
+      {/* 2x2 Grid with Wrap Support to prevent Overflow */}
+      <div className="grid grid-cols-2 gap-x-4 gap-y-6 md:gap-x-12 w-full max-w-2xl">
         {features.map((feature, index) => (
-          <div key={index} className="flex items-center gap-3 md:gap-4">
-            {/* Custom Gemini Icon */}
+          <div key={index} className="flex items-start gap-3">
+            {/* Custom Gemini Icon - Positioned at top to handle wrapped text */}
             <img 
               src="/icons/Gemini.svg" 
               alt="Gemini" 
-              className="w-5 h-5 md:w-6 md:h-6 shrink-0" 
+              className="w-4 h-4 md:w-5 md:h-5 shrink-0 mt-0.5" 
             />
-            {/* Pure White & Single Line */}
-            <span className="text-white text-[13px] md:text-[16px] font-medium whitespace-nowrap tracking-tight">
+            {/* 1. Removed whitespace-nowrap so text wraps instead of going off-screen.
+                2. Set base size to 14px (Standard readable minimum).
+            */}
+            <span className="text-white text-[14px] md:text-[16px] font-medium tracking-tight text-left leading-snug">
               {feature}
             </span>
           </div>

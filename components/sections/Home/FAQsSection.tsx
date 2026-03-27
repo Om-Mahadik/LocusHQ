@@ -38,12 +38,25 @@ const faqs = [
   }
 ];
 
+// 1. Container variants to handle staggering the children
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Delay between each child animation
+      delayChildren: 0.1     // Initial delay before container animation starts
+    }
+  }
+};
+
+// 2. Variants for individual items (H2 and FAQ items)
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } 
   }
 };
 
@@ -64,18 +77,19 @@ export default function FaqsSectionHome() {
         <motion.h2 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }} // Triggers when 100px into view
           variants={fadeInUp}
           className="mb-10 text-center text-4xl md:text-5xl font-semibold tracking-tight text-white"
         >
           FAQs
         </motion.h2>
 
+        {/* 3. Apply containerVariants to handle staggering */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
           className="rounded-[32px] bg-[#0A0A0A] border border-zinc-900 p-5 md:p-8"
         >
           <div className="flex flex-col">
@@ -83,15 +97,17 @@ export default function FaqsSectionHome() {
               const isOpen = openIndex === index;
 
               return (
-                <div 
+                // 4. Wrap each item in motion.div and apply fadeInUp
+                <motion.div 
                   key={`faq-item-${index}`} 
+                  variants={fadeInUp}
                   className={index !== faqs.length - 1 ? "border-b border-zinc-900" : ""}
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     className="group flex w-full items-center justify-between py-5 text-left outline-none"
                   >
-                    <span className="pr-6 text-[15px] md:text-[16px] font-medium text-white transition-opacity group-hover:opacity-60">
+                    <span className="pr-6 text-[15px] md:text-[16px] font-medium text-white transition-all">
                       {faq.question}
                     </span>
 
@@ -100,8 +116,8 @@ export default function FaqsSectionHome() {
                       animate={{ rotate: isOpen ? 45 : 0 }}
                       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="absolute h-[1.2px] w-3.5 bg-zinc-500 rounded-full" />
-                      <div className="absolute h-3.5 w-[1.2px] bg-zinc-500 rounded-full" />
+                      <div className="absolute h-[1.2px] w-3.5 bg-white rounded-full" />
+                      <div className="absolute h-3.5 w-[1.2px] bg-white rounded-full" />
                     </motion.div>
                   </button>
 
@@ -114,13 +130,13 @@ export default function FaqsSectionHome() {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-6 text-[13px] md:text-[14px] leading-relaxed text-zinc-500 max-w-[98%] font-normal">
+                        <p className="pb-6 text-[13px] md:text-[14px] leading-relaxed text-zinc-400 max-w-[98%] font-normal">
                           {faq.answer}
                         </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </div>

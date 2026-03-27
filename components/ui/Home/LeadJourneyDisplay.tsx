@@ -2,100 +2,127 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { MessageSquare, Bot, CalendarDays, Zap, User } from "lucide-react";
 
-const nodes = [
-  { id: 1, label: "ManyChat", icon: MessageSquare, color: "#EC4899", y: 15 },
-  { id: 2, label: "AI Creative", icon: Bot, color: "#0EA5E9", y: 38 },
-  { id: 3, label: "GHL Booking", icon: CalendarDays, color: "#F59E0B", y: 62 },
-  { id: 4, label: "Attribution", icon: Zap, color: "#8B5CF6", y: 85 },
+const innerOrbit = [
+  { src: "/icons/Meta.svg", alt: "Meta" },
+  { src: "/icons/GoogleAds.svg", alt: "Google Ads" },
+  { src: "/icons/SalesForce.svg", alt: "Salesforce" },
+];
+
+const outerOrbit = [
+  { src: "/icons/Gemini.svg", alt: "Gemini" },
+  { src: "/icons/GHLAutomation.svg", alt: "GHL" },
+  { src: "/icons/GoogleAnalytics.svg", alt: "Analytics" },
 ];
 
 export default function LeadJourneyDisplay() {
+  const rotationDuration = 30; 
+
   return (
-    <div className="relative group w-full">
-      {/* Glow Effect behind the card */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-sky-500/20 to-purple-500/20 rounded-[60px] blur-2xl opacity-50 group-hover:opacity-75 transition duration-1000" />
-      
-      <div className="relative w-full aspect-square md:aspect-[4/4.5] bg-white rounded-[40px] md:rounded-[60px] border border-white/10 flex flex-col items-center justify-center overflow-hidden shadow-2xl">
+    <section className="w-full h-full flex items-center justify-center bg-[#000000]">
+      {/* 3:4 Vertical Ratio Container */}
+      <div className="relative w-full max-w-[500px] aspect-[3/4] flex flex-col items-center justify-center overflow-hidden rounded-[40px] md:rounded-[60px] bg-[#08080C] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
         
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-40" />
-
-        <div className="relative w-full h-full max-w-[90%] flex items-center justify-between">
+        {/* --- LIGHTER DYNAMIC BACKGROUND --- */}
+        <div className="absolute inset-0 z-0">
+          {/* Animated Aurora Blobs */}
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.3, 0.2] 
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-[10%] -left-[10%] w-[80%] h-[70%] bg-indigo-600/40 blur-[120px] rounded-full" 
+          />
+          <motion.div 
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.15, 0.25, 0.15] 
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-violet-600/30 blur-[100px] rounded-full" 
+          />
           
-          {/* SVG Layer */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
-            {nodes.map((node) => (
-              <g key={node.id}>
-                <motion.path
-                  d={`M 15 50 C 35 50, 45 ${node.y}, 75 ${node.y}`}
-                  stroke="#F1F1F4"
-                  strokeWidth="0.8"
-                  fill="none"
-                />
-                <motion.path
-                  d={`M 15 50 C 35 50, 45 ${node.y}, 75 ${node.y}`}
-                  stroke={node.color}
-                  strokeWidth="0.8"
-                  fill="none"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: node.id * 0.7,
-                    ease: "easeInOut",
-                  }}
-                />
-              </g>
-            ))}
-          </svg>
+          {/* Subtle Light-Wash Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 via-transparent to-violet-500/5" />
+          
+          {/* More Visible Grid */}
+          <div 
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(circle at center, #94A3B8 1px, transparent 1px)`,
+              backgroundSize: "44px 44px",
+              maskImage: "radial-gradient(circle at center, black 50%, transparent 95%)",
+            }}
+          />
+        </div>
 
-          {/* LEFT: Entry Hub */}
-          <div className="relative z-10 ml-4">
-            <motion.div 
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-3xl bg-zinc-900 flex flex-col items-center justify-center shadow-2xl"
-            >
-              <User className="text-white mb-1" size={24} />
-              <span className="text-[8px] font-black text-zinc-400 uppercase tracking-tighter">Lead</span>
-            </motion.div>
-          </div>
-
-          {/* RIGHT: Node List */}
-          <div className="flex flex-col justify-between h-[85%] z-10 pr-4">
-            {nodes.map((node, i) => (
-              <motion.div
-                key={node.id}
-                initial={{ x: 30, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                className="flex items-center gap-3 md:gap-4"
-              >
-                <div 
-                  className="w-3 h-3 rounded-full border-2 border-white shadow-sm shrink-0" 
-                  style={{ backgroundColor: node.color }} 
-                />
-                <div className="w-40 md:w-56 bg-white/80 backdrop-blur-md border border-zinc-100 p-3 md:p-4 rounded-2xl shadow-lg shadow-black/[0.03]">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-xl" style={{ backgroundColor: `${node.color}15`, color: node.color }}>
-                      <node.icon size={20} />
-                    </div>
-                    <div>
-                      <p className="text-[12px] md:text-[14px] font-black text-zinc-900 leading-none">{node.label}</p>
-                      <p className="text-[9px] font-bold text-zinc-400 uppercase mt-1">Live Tracking</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+        {/* --- CENTRAL HUB (Stronger Glow) --- */}
+        <div className="relative z-30 flex items-center justify-center">
+          {/* Intense Core Glow to brighten the center */}
+          <div className="absolute h-40 w-40 rounded-full bg-blue-500/30 blur-[50px]" />
+          <div className="relative z-10 h-16 w-16 md:h-20 md:w-20 rounded-2xl bg-white/10 backdrop-blur-2xl border border-white/30 flex items-center justify-center shadow-[0_0_30px_rgba(99,102,241,0.3)]">
+            <img src="/icons/lead.svg" alt="Lead" className="h-8 w-8 md:h-10 md:w-10 brightness-150 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
           </div>
         </div>
 
+        {/* --- INNER ORBIT (Counter-Clockwise) --- */}
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
+          className="absolute h-[45%] aspect-square rounded-full border border-white/10"
+        >
+          {innerOrbit.map((icon, i) => {
+            const angle = (i * 360) / innerOrbit.length;
+            return (
+              <div 
+                key={i}
+                className="absolute left-1/2 top-1/2"
+                style={{ 
+                  transform: `rotate(${angle}deg) translate(clamp(80px, 12vw, 110px)) rotate(-${angle}deg)` 
+                }}
+              >
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
+                  className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/20 shadow-xl -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform"
+                >
+                  <img src={icon.src} alt={icon.alt} className="h-6 w-6 object-contain" />
+                </motion.div>
+              </div>
+            );
+          })}
+        </motion.div>
+
+        {/* --- OUTER ORBIT (Clockwise) --- */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
+          className="absolute h-[85%] aspect-square rounded-full border border-white/5"
+        >
+          {outerOrbit.map((icon, i) => {
+            const angle = (i * 360) / outerOrbit.length + 60;
+            return (
+              <div 
+                key={i}
+                className="absolute left-1/2 top-1/2"
+                style={{ 
+                  transform: `rotate(${angle}deg) translate(clamp(140px, 18vw, 190px)) rotate(-${angle}deg)` 
+                }}
+              >
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
+                  className="flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/20 shadow-2xl -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform"
+                >
+                  <img src={icon.src} alt={icon.alt} className="h-8 w-8 object-contain" />
+                </motion.div>
+              </div>
+            );
+          })}
+        </motion.div>
 
       </div>
-    </div>
+    </section>
   );
 }

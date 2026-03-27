@@ -49,7 +49,7 @@ const HeroSection = () => {
           className="text-[48px] md:text-[110px] font-bold tracking-[-0.04em] mb-6 leading-[0.9] md:leading-[0.85]"
         >
           We Build <br /> 
-          <span className="text-zinc-400 italic font-medium">Growth Systems.</span>
+          <span className="text-green italic font-medium">Growth Systems.</span>
         </motion.h1>
         
         <motion.p 
