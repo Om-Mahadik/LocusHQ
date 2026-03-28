@@ -15,6 +15,7 @@ import Services from "@/components/sections/Home/Services";
 import HighlightedFeatures from "@/components/sections/Features/HighlightedFeatures";
 import CleanFeatures from "@/components/sections/Home/CleanFeatures";
 import FeaturesSet1 from "@/components/sections/Home/FeaturesSet1";
+import Features from "@/components/sections/Home/trial/Features";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <HeroSection />
 
       <FeaturesSet1 />
+      <Features />
 
       <CleanFeatures />
       <InfoSection />
