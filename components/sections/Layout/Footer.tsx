@@ -154,9 +154,9 @@ export default function Footer() {
           className="mt-14 flex flex-col items-center justify-between gap-5 border-t border-zinc-900 pt-7 text-[11px] text-white md:flex-row"
         >
           <div className="flex gap-5 opacity-70">
-            <Link href="/privacy" className="hover:opacity-100 transition-opacity">Privacy</Link>
-            <Link href="/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
-            <Link href="/cookies" className="hover:opacity-100 transition-opacity">Cookies</Link>
+            <Link href="/legal/privacy" className="hover:opacity-100 transition-opacity">Privacy</Link>
+            <Link href="/legal/terms" className="hover:opacity-100 transition-opacity">Terms</Link>
+            <Link href="/legal/disclaimer" className="hover:opacity-100 transition-opacity">Disclaimer</Link>
           </div>
           <p className="tracking-wide opacity-50 uppercase">© 2026 LOCUSHQ. ALL RIGHTS RESERVED</p>
         </motion.div>
