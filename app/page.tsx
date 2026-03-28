@@ -16,6 +16,8 @@ import HighlightedFeatures from "@/components/sections/Features/HighlightedFeatu
 import CleanFeatures from "@/components/sections/Home/CleanFeatures";
 import FeaturesSet1 from "@/components/sections/Home/FeaturesSet1";
 import Features from "@/components/sections/Home/trial/Features";
+import StickySectionOriginal from "@/components/ui/Home/StickySectionOriginal";
+
 
 export default function Home() {
   return (
@@ -28,7 +30,11 @@ export default function Home() {
       <CleanFeatures />
       <InfoSection />
 
+      <ProcessSection />
+
       <Services />
+      <StickySectionOriginal />
+
 
 
 
