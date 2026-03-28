@@ -14,11 +14,14 @@ import FeaturesSection from "@/components/sections/Home/FeaturesSection";
 import Services from "@/components/sections/Home/Services";
 import HighlightedFeatures from "@/components/sections/Features/HighlightedFeatures";
 import CleanFeatures from "@/components/sections/Home/CleanFeatures";
+import FeaturesSet1 from "@/components/sections/Home/FeaturesSet1";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
+
+      <FeaturesSet1 />
 
       <CleanFeatures />
       <InfoSection />
