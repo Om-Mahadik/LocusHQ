@@ -1,9 +1,9 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import { LogoSlider } from "@/components/ui/Home/LogoSlider";
 import { motion } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
-import { LogoSlider } from "@/components/ui/Home/LogoSlider";
+import Image from "next/image";
+import React from "react";
 
 const HeroSection = () => {
   const flags = [
@@ -11,6 +11,7 @@ const HeroSection = () => {
     { src: "/icons/canada-flag.svg", alt: "Canada" },
     { src: "/icons/australia-flag.svg", alt: "Australia" },
     { src: "/icons/usa-flag.svg", alt: "USA" },
+    
   ];
 
   const [systemColor, setSystemColor] = React.useState("#e4d615");
@@ -32,7 +33,7 @@ const colorInputRef = React.useRef<HTMLInputElement>(null);
         transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
         className="flex items-center gap-3 mb-8 bg-zinc-900/30 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-md"
       >
-        <span className="text-zinc-500 font-bold tracking-[0.3em] text-[9px] uppercase pl-1">
+        <span className="text-white font-bold tracking-[0.3em] text-[9px] uppercase pl-1">
           Global Operations
         </span>
         <div className="flex -space-x-1.5">
@@ -93,7 +94,7 @@ const colorInputRef = React.useRef<HTMLInputElement>(null);
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-zinc-500 text-sm md:text-xl leading-relaxed max-w-xl mx-auto mb-10 font-light tracking-tight px-4"
+          className="text-white text-sm md:text-xl leading-relaxed max-w-xl mx-auto mb-10 font-light tracking-tight px-4"
         >
           Scale your brand with AI-powered paid media and automation that turns strangers into high-ticket clients.
         </motion.p>
