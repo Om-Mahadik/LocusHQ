@@ -24,16 +24,16 @@ export default function Home() {
     <>
       <HeroSection />
 
-      <FeaturesSet1 />
+
       <Features />
 
-      <CleanFeatures />
+
       <InfoSection />
 
       <ProcessSection />
 
       <Services />
-      <StickySectionOriginal />
+
 
 
 

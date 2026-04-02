@@ -1,4 +1,5 @@
 "use client";
+import { IndustrySlider } from "@/components/ui/Home/IndustrySlider";
 import { LogoSlider } from "@/components/ui/Home/LogoSlider";
 import { motion } from "framer-motion";
 import { ArrowRight, Star } from "lucide-react";
@@ -200,8 +201,9 @@ const colorInputRef = React.useRef<HTMLInputElement>(null);
       </motion.div>
 
       {/* 6. Logo Slider Container */}
-      <div className="mt-20 w-full opacity-30 hover:opacity-100 transition-opacity duration-1000">
+      <div className="mt-20 w-full opacity-100 hover:opacity-100 transition-opacity duration-1000">
         <LogoSlider />
+        <IndustrySlider />
       </div>
 
     </section>

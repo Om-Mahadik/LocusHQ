@@ -96,7 +96,7 @@ const FeatureFour = () => {
 
       {/* Bottom Section: Typography */}
       <div className="relative z-10 w-full mt-auto">
-        <h2 className={`text-[64px] md:text-[80px] font-bold tracking-tighter leading-none mb-2 transition-colors duration-500
+        <h2 className={`text-[76px] md:text-[80px] font-bold tracking-tighter leading-none mb-2 transition-colors duration-500
           ${isActive ? 'text-black' : 'text-white'}`}>
           {displayValue}+
         </h2>
