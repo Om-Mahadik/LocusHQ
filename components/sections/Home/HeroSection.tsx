@@ -61,31 +61,32 @@ const HeroSection = () => {
           Most businesses don't have a traffic problem. They have a broken revenue system. We diagnose it, rebuild it, and operate it - so growth becomes structural, not accidental.
         </motion.p>
       </div>
-
-      {/* 4. Widened CTA Button with White/Black Theme */}
-<motion.div 
-  initial={{ opacity: 0, y: 15 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
-  className="mb-12 z-10 w-full flex justify-center px-4" 
->
-  <motion.button 
-    whileHover={{ scale: 1.02 }}
-    whileTap={{ scale: 0.98 }}
-    /* Added w-full max-w-fit to ensure it handles long text responsibly */
-    className="group flex items-center justify-between gap-4 md:gap-8 bg-[#0A0A0A] border border-zinc-800 pl-6 md:pl-12 pr-2 py-2 rounded-full transition-all duration-300 hover:bg-[#111] w-full max-w-fit"
-  >
-    {/* Added whitespace-nowrap and adjusted tracking for better fit */}
-    <span className="text-white text-[11px] md:text-[15px] font-semibold tracking-wider uppercase whitespace-nowrap">
-      Diagnose My Revenue System
-    </span>
-    
-    {/* flex-shrink-0 ensures the circle never gets squished or pushed down */}
-    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black group-hover:bg-zinc-200 transition-colors flex-shrink-0">
-      <ArrowRight size={20} strokeWidth={2.5} />
-    </div>
-  </motion.button>
-</motion.div>
+{/* 4. Multi-row CTA Button */}
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
+        className="mb-12 z-10 w-full flex justify-center px-4" 
+      >
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          className="group flex items-center justify-between gap-4 md:gap-6 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/50 pl-8 pr-2 py-3 rounded-[2rem] transition-all duration-300 w-full max-w-fit shadow-2xl"
+        >
+          {/* - Removed whitespace-nowrap 
+              - Added max-w-[140px] (mobile) and md:max-w-[200px] to force the wrap
+              - Added text-left to keep the two lines clean
+          */}
+          <span className="text-white text-[14px] md:text-[16px] font-medium tracking-wide leading-tight text-left max-w-[140px] md:max-w-[180px]">
+            Diagnose My <br /> Revenue System
+          </span>
+          
+          {/* Blue attention circle - vertical centering is handled by items-center on the parent */}
+          <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white group-hover:bg-blue-500 group-hover:rotate-12 transition-all duration-300 flex-shrink-0 shadow-lg">
+            <ArrowRight size={24} strokeWidth={2.5} />
+          </div>
+        </motion.button>
+      </motion.div>
 
       {/* 5. Minimalist Bottom Dock */}
       <motion.div 
