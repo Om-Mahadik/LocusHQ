@@ -19,9 +19,9 @@ export default function LeadJourneyDisplay() {
   const rotationDuration = 30; 
 
   return (
-    <section className="w-full h-full flex items-center justify-center bg-[#000000]">
+    <section className="w-full h-full flex items-center justify-center">
       {/* 3:4 Vertical Ratio Container */}
-      <div className="relative w-full max-w-[500px] aspect-[3/4] flex flex-col items-center justify-center overflow-hidden rounded-[40px] md:rounded-[60px] bg-[#08080C] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+      <div className="relative w-full max-w-[500px] aspect-[3/3.5] flex flex-col items-center justify-center overflow-hidden rounded-[40px] md:rounded-[60px] bg-[#08080C] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
         
         {/* --- LIGHTER DYNAMIC BACKGROUND --- */}
         <div className="absolute inset-0 z-0">
@@ -32,7 +32,8 @@ export default function LeadJourneyDisplay() {
               opacity: [0.2, 0.3, 0.2] 
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-[10%] -left-[10%] w-[80%] h-[70%] bg-indigo-600/40 blur-[120px] rounded-full" 
+            style={{ willChange: "transform, opacity" }}
+            className="absolute -top-[10%] -left-[10%] w-[80%] h-[70%] bg-indigo-600/40 blur-[100px] rounded-full" 
           />
           <motion.div 
             animate={{ 
@@ -40,6 +41,7 @@ export default function LeadJourneyDisplay() {
               opacity: [0.15, 0.25, 0.15] 
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            style={{ willChange: "transform, opacity" }}
             className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-violet-600/30 blur-[100px] rounded-full" 
           />
           
@@ -68,8 +70,9 @@ export default function LeadJourneyDisplay() {
 
         {/* --- INNER ORBIT (Counter-Clockwise) --- */}
         <motion.div
-          animate={{ rotate: -360 }}
+          animate={{ rotate: [0, -360] }} // Explicit array stops the reset glitch
           transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
+          style={{ willChange: "transform" }}
           className="absolute h-[45%] aspect-square rounded-full border border-white/10"
         >
           {innerOrbit.map((icon, i) => {
@@ -83,9 +86,12 @@ export default function LeadJourneyDisplay() {
                 }}
               >
                 <motion.div
-                  animate={{ rotate: 360 }}
+                  // Set translation here so Framer controls both center positioning AND rotation without fighting Tailwind
+                  style={{ x: "-50%", y: "-50%", willChange: "transform" }}
+                  animate={{ rotate: [0, 360] }} // Explicit array stops the reset glitch
                   transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
-                  className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/20 shadow-xl -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform"
+                  whileHover={{ scale: 1.1 }}
+                  className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/20 shadow-xl cursor-pointer"
                 >
                   <img src={icon.src} alt={icon.alt} className="h-6 w-6 object-contain" />
                 </motion.div>
@@ -96,8 +102,9 @@ export default function LeadJourneyDisplay() {
 
         {/* --- OUTER ORBIT (Clockwise) --- */}
         <motion.div
-          animate={{ rotate: 360 }}
+          animate={{ rotate: [0, 360] }} // Explicit array stops the reset glitch
           transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
+          style={{ willChange: "transform" }}
           className="absolute h-[85%] aspect-square rounded-full border border-white/5"
         >
           {outerOrbit.map((icon, i) => {
@@ -111,9 +118,12 @@ export default function LeadJourneyDisplay() {
                 }}
               >
                 <motion.div
-                  animate={{ rotate: -360 }}
+                  // Set translation here so Framer controls both center positioning AND rotation without fighting Tailwind
+                  style={{ x: "-50%", y: "-50%", willChange: "transform" }}
+                  animate={{ rotate: [0, -360] }} // Explicit array stops the reset glitch
                   transition={{ repeat: Infinity, duration: rotationDuration, ease: "linear" }}
-                  className="flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/20 shadow-2xl -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform"
+                  whileHover={{ scale: 1.1 }}
+                  className="flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/20 shadow-2xl cursor-pointer"
                 >
                   <img src={icon.src} alt={icon.alt} className="h-8 w-8 object-contain" />
                 </motion.div>

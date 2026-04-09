@@ -34,7 +34,7 @@ const FeatureOne = () => {
       // Early Number Trigger (Starts at 20% scroll)
       if (latest > 0.20 && !hasAnimated.current) {
         hasAnimated.current = true;
-        animate(0, 500, { // Changed to 500 to match $500k
+        animate(0, 2, { // Changed to 500 to match $500k
           duration: 3,
           ease: [0.16, 1, 0.3, 1], 
           onUpdate: (value) => setDisplayValue(Math.round(value)),
@@ -98,12 +98,12 @@ const FeatureOne = () => {
       <div className="relative z-10 w-full">
         <h2 className={`text-[76px] md:text-[80px] font-bold tracking-tighter leading-none mb-2 transition-colors duration-500
           ${isActive ? 'text-black' : 'text-white'}`}>
-          ${displayValue}k<span className={isActive ? 'text-black/30' : 'text-[#22C55E]'}>+</span>
+          ${displayValue}M<span className={isActive ? 'text-black/30' : 'text-[#22C55E]'}>+</span>
         </h2>
         
-        <p className={`text-xl font-bold uppercase tracking-wide mb-3 transition-colors duration-500
+        <p className={`text-xl font-bold tracking-wide mb-3 transition-colors duration-500
           ${isActive ? 'text-black' : 'text-white'}`}>
-          Total Ad Spend Managed
+          Revenue Engineered
         </p>
 
         <p className={`text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500 max-w-[90%]

@@ -81,7 +81,7 @@ export default function TestimonialsSection() {
   if (!isMounted) return <section className="bg-black py-16" />;
 
   return (
-    <section className="bg-black py-16 px-4 md:py-24 md:px-6 font-sans antialiased overflow-hidden">
+    <section className="bg-black py-12 px-4 md:py-24 md:px-6 font-sans antialiased overflow-hidden">
       <motion.div 
         className="mx-auto max-w-[1200px]"
         initial="hidden"
@@ -91,7 +91,7 @@ export default function TestimonialsSection() {
       >
         
         {/* Header Section */}
-        <motion.div variants={fadeInUp} className="text-center mb-16 flex flex-col items-center">
+        <motion.div variants={fadeInUp} className="text-center mb-12 flex flex-col items-center">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
             Client Success
           </h2>

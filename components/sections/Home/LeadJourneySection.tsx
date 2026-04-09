@@ -7,9 +7,11 @@ import LeadJourneyContent from "@/components/ui/Home/LeadJourneyContent";
 
 export default function LeadJourneySection() {
   return (
-    <section className="bg-black py-16 px-6 md:py-32 antialiased font-sans overflow-hidden">
+    // Changed py-16 to pb-16 pt-0 and md:py-32 to md:pb-32 md:pt-0
+    <section className="bg-black pt-0 pb-16 px-6 md:pt-0 md:pb-32 antialiased font-sans overflow-hidden w-full">
       <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+        {/* Added mt-0 to ensure no default margins are pushing the content down */}
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-24 items-center mt-0">
           
           {/* Content side - Rising from Bottom */}
           <motion.div 
@@ -18,7 +20,7 @@ export default function LeadJourneySection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               duration: 1, 
-              ease: [0.22, 1, 0.36, 1], // Luxury quintic ease-out
+              ease: [0.22, 1, 0.36, 1], 
             }}
             className="w-full order-2 md:order-1"
           >
@@ -32,7 +34,7 @@ export default function LeadJourneySection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               duration: 1.2, 
-              delay: 0.2, // Sequential stagger for a more premium look
+              delay: 0.2, 
               ease: [0.22, 1, 0.36, 1] 
             }}
             className="w-full order-1 md:order-2"

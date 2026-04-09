@@ -20,10 +20,10 @@ const LOGOS = [
 
 export const LogoSlider = () => {
   return (
-    <div className="bg-black py-10 w-full overflow-hidden">
+    <div className="bg-black py-6 w-full overflow-hidden">
       {/* Header Text */}
-      <div className="text-center mb-8">
-        <span className="text-gray-300 text-xs font-regular tracking-widest">
+      <div className="text-center mb-10">
+        <span className="text-gray-1000 text-[12px] font-regular tracking-widest">
           Brands we have grown
         </span>
       </div>
@@ -41,14 +41,17 @@ export const LogoSlider = () => {
       `}} />
 
       <div className="relative flex">
-        {/* Gradients */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
+        {/* Gradients - Reduced width on mobile (w-12), and removed 'via-black/80' for a quicker fade to transparent */}
+        <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
-        <div className="animate-scroll-infinite gap-12 flex items-center pr-12">
+        {/* Increased gap between logos to match the larger size */}
+        <div className="animate-scroll-infinite gap-12 md:gap-16 flex items-center pr-12 md:pr-16">
+          
           {/* First set */}
           {LOGOS.map((logo, index) => (
-            <div key={`logo-1-${index}`} className="relative w-28 h-8 flex-shrink-0">
+            // Increased width and height (w-32 h-12 on mobile, w-44 h-16 on desktop)
+            <div key={`logo-1-${index}`} className="relative w-32 h-12 md:w-44 md:h-16 flex-shrink-0">
               <Image
                 src={logo.src}
                 alt={logo.alt}
@@ -60,7 +63,8 @@ export const LogoSlider = () => {
 
           {/* Second set (Duplicate) */}
           {LOGOS.map((logo, index) => (
-            <div key={`logo-2-${index}`} className="relative w-28 h-8 flex-shrink-0">
+            // Increased width and height
+            <div key={`logo-2-${index}`} className="relative w-32 h-12 md:w-44 md:h-16 flex-shrink-0">
               <Image
                 src={logo.src}
                 alt={logo.alt}
@@ -69,6 +73,7 @@ export const LogoSlider = () => {
               />
             </div>
           ))}
+          
         </div>
       </div>
     </div>

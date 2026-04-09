@@ -51,8 +51,8 @@ export default function MNavbar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
         <div className="w-[82%] h-full flex flex-col justify-between px-10 py-24">
           
           <div className="flex items-center gap-4 opacity-20">
-            <div className="h-[1px] w-8 bg-white" />
-            <p className="text-[9px] font-black uppercase tracking-[0.5em] text-white">Navigation</p>
+  
+
           </div>
 
           {/* Links Section */}
@@ -81,14 +81,15 @@ export default function MNavbar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
           </div>
 
           {/* Footer Info */}
-          <div className="space-y-4">
+          <div className="space-y-4 mt">
             <div className="h-[1px] w-full bg-white/5" />
             <div className="flex flex-col gap-1">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
-                Studio LocusHQ
+              <p className="text-[14px] font-medium tracking-widest text-white-500">
+                LocusHQ
               </p>
+
               <p className="text-[9px] font-medium text-zinc-600 uppercase tracking-tighter">
-                © 2026 Mumbai, IN
+                © 2026 Delhi, IN
               </p>
             </div>
           </div>

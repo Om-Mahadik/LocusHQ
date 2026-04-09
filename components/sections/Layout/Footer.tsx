@@ -45,7 +45,7 @@ export default function Footer() {
           >
             <h2 className="text-2xl font-bold tracking-tight text-white">LocusHQ</h2>
             <p className="text-[14px] text-white max-w-xs opacity-90 leading-relaxed">
-              Building high-performance growth systems for modern brands worldwide.
+              We architect revenue systems for businesses done leaving money between click and the close.
             </p>
             <div className="flex gap-2.5">
               {flags.map((flag, i) => (

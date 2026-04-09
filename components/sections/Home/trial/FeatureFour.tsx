@@ -101,9 +101,9 @@ const FeatureFour = () => {
           {displayValue}+
         </h2>
         
-        <p className={`text-xl font-bold uppercase tracking-wide mb-3 transition-colors duration-500
+        <p className={`text-xl font-bold tracking-wide mb-3 transition-colors duration-500
           ${isActive ? 'text-black' : 'text-white'}`}>
-          Brands Scaled
+          Revenue Systems Deployed
         </p>
 
         <p className={`text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500 max-w-[90%]

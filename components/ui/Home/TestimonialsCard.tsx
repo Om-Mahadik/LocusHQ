@@ -24,7 +24,8 @@ export function TestimonialsCard({ testimonial }: TestimonialsCardProps) {
         
         {/* Top: The Pure White Quote */}
         <div className="relative">
-          <p className="text-[18px] md:text-[17px] leading-[1.6] text-white font-normal tracking-tight">
+          {/* Added text-justify and [text-justify:inter-word] here */}
+          <p className="text-[18px] md:text-[17px] leading-[1.6] text-white font-normal tracking-tight text-justify [text-justify:inter-word]">
             &ldquo;{quote}&rdquo;
           </p>
         </div>
@@ -53,7 +54,7 @@ export function TestimonialsCard({ testimonial }: TestimonialsCardProps) {
               </h4>
               <div className="flex items-center gap-1 mt-1 opacity-40 group-hover:opacity-60 transition-opacity">
                 <MapPin className="h-3 w-3 text-white" />
-                <span className="text-[10px] md:text-[11px] text-white font-semibold uppercase tracking-widest">
+                <span className="text-[10px] md:text-[11px] text-white font-medium tracking-widest">
                   {clientLocation}
                 </span>
               </div>

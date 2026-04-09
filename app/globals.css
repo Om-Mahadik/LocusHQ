@@ -1,16 +1,54 @@
 @import "tailwindcss";
 
-/* src/app/globals.css */
+/* Base styles */
+@layer base {
+  body {
+    @apply bg-[#000000] text-white font-sans text-base;
+  }
 
+  h1 {
+    @apply text-4xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl font-semibold leading-snug;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold leading-snug;
+  }
+
+  p {
+    @apply text-base text-gray-300 leading-relaxed;
+  }
+
+  small {
+    @apply text-sm text-gray-500;
+  }
+}
+
+/* Utilities */
 @layer utilities {
-  /* This hides the scrollbar in Chrome, Safari, and Opera */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
 
-  /* This hides the scrollbar in IE, Edge, and Firefox */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply w-full mx-auto px-4 sm:px-6 md:px-10 lg:max-w-7xl;
+  }
+
+  .section {
+    @apply py-16 md:py-20;
+  }
+
+  .card {
+    @apply bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 md:p-6;
   }
 }

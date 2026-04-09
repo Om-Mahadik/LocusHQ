@@ -25,7 +25,7 @@ const FeatureTwo = () => {
 
   const startCount = () => {
     hasAnimated.current = true;
-    animate(0, 6000, {
+    animate(0, 6, {
       duration: 4,
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (value) => setDisplayValue(Math.round(value)),
@@ -114,9 +114,9 @@ const FeatureTwo = () => {
           {displayValue.toLocaleString()}+
         </h2>
         
-        <p className={`text-xl font-bold uppercase tracking-wide mb-3 transition-colors duration-500
+        <p className={`text-xl font-bold tracking-wide mb-3 transition-colors duration-500
           ${isActive ? 'text-white' : 'text-white'}`}>
-          Qualified Leads Generated
+          Verticals We Go Deep In
         </p>
 
         <p className={`text-[#888888] text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500

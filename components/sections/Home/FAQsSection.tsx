@@ -71,7 +71,7 @@ export default function FaqsSectionHome() {
   if (!mounted) return null;
 
   return (
-    <section className="bg-black py-16 px-4 md:py-24 md:px-6 font-sans antialiased overflow-hidden">
+    <section className="bg-black py-14 px-4 md:py-24 md:px-6 font-sans antialiased overflow-hidden">
       <div className="mx-auto max-w-2xl">
         
         <motion.h2 
@@ -130,7 +130,8 @@ export default function FaqsSectionHome() {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-6 text-[13px] md:text-[14px] leading-relaxed text-zinc-400 max-w-[98%] font-normal">
+                        {/* UPDATE IS HERE: text-white/90, text-justify, and [text-justify:inter-word] */}
+                        <p className="pb-6 text-[13px] md:text-[14px] leading-relaxed text-white/90 max-w-[98%] font-normal text-justify [text-justify:inter-word]">
                           {faq.answer}
                         </p>
                       </motion.div>

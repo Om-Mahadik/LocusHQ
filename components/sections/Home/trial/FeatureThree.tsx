@@ -25,7 +25,7 @@ const FeatureThree = () => {
 
   const startCount = () => {
     hasAnimated.current = true;
-    animate(0, 5, { // Animating to 5 countries as per previous context
+    animate(0, 4, { // Animating to 5 countries as per previous context
       duration: 2,
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (value) => setDisplayValue(Math.round(value)),
@@ -102,9 +102,9 @@ const FeatureThree = () => {
           {displayValue}<span className={isActive ? 'text-black/30' : 'text-[#FACC15]'}>.</span>
         </h2>
         
-        <p className={`text-xl font-bold uppercase tracking-wide mb-3 transition-colors duration-500
+        <p className={`text-xl font-bold tracking-wide mb-3 transition-colors duration-500
           ${isActive ? 'text-black' : 'text-white'}`}>
-          Countries. One System.
+          Markets Operated In
         </p>
 
         <p className={`text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500

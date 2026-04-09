@@ -17,29 +17,23 @@ import CleanFeatures from "@/components/sections/Home/CleanFeatures";
 import FeaturesSet1 from "@/components/sections/Home/FeaturesSet1";
 import Features from "@/components/sections/Home/trial/Features";
 import StickySectionOriginal from "@/components/ui/Home/StickySectionOriginal";
+import { LogoSlider } from "@/components/ui/Home/LogoSlider";
+import { IndustrySlider } from "@/components/ui/Home/IndustrySlider";
+
+
 
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-
-
+      <LogoSlider />
+      <IndustrySlider />
       <Features />
-
-
       <InfoSection />
-
       <ProcessSection />
-
       <Services />
-
-
-
-
-
       <LeadJourneySection />
-      
       <TestimonialsSection />
       <FAQsSection />
       <FinalCTASection />
