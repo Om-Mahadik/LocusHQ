@@ -20,7 +20,7 @@ const LOGOS = [
 
 export const LogoSlider = () => {
   return (
-    <div className="bg-black py-6 w-full overflow-hidden">
+    <div className="bg-black py-4 w-full overflow-hidden">
       {/* Header Text */}
       <div className="text-center mb-10">
         <span className="text-gray-1000 text-[12px] font-regular tracking-widest">

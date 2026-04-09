@@ -21,7 +21,7 @@ const INDUSTRIES = [
 
 export const IndustrySlider = () => {
   return (
-    <div className="bg-black py-12 w-full overflow-hidden">
+    <div className="bg-black py-4 w-full overflow-hidden">
       
       {/* Header Text */}
       <div className="text-center mb-10">

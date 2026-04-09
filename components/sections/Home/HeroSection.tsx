@@ -14,7 +14,8 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen w-full bg-[#000] text-white flex flex-col items-center justify-center px-6 pt-32 pb-20 overflow-hidden">
+    /* Changed min-h-screen to h-auto and pb-20 to pb-0 */
+    <section className="relative h-auto w-full bg-[#000] text-white flex flex-col items-center px-6 pt-28 pb-0 overflow-hidden">
       
       {/* 1. Sophisticated Background Ambience */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
@@ -65,7 +66,7 @@ const HeroSection = () => {
         </motion.p>
       </div>
 
-      {/* 4. Single Minimal CTA Button - Space reduced via mb-12 */}
+      {/* 4. Single Minimal CTA Button */}
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,12 +87,12 @@ const HeroSection = () => {
         </motion.button>
       </motion.div>
 
-      {/* 5. Minimalist Bottom Dock - Space reduced via pt-8 */}
+      {/* 5. Minimalist Bottom Dock */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.9 }}
-        className="w-full max-w-4xl z-10 border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-0"
+        className="w-full max-w-4xl z-10 border-t border-white/10 pt-8 pb-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-0"
       >
         {/* Rating */}
         <div className="flex items-center gap-4 bg-[#0A0A0A] px-5 py-3 rounded-full border border-white/5">
