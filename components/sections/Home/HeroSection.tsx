@@ -62,26 +62,30 @@ const HeroSection = () => {
         </motion.p>
       </div>
 
-      {/* 4. Single Minimal CTA Button */}
-      <motion.div 
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
-        className="mb-12 z-10" 
-      >
-        <motion.button 
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="group flex items-center gap-4 bg-[#0A0A0A] border border-white/5 pl-8 pr-2 py-2 rounded-full transition-all duration-300 hover:bg-[#111]"
-        >
-          <span className="text-white text-[13px] md:text-[15px] font-semibold tracking-wide">
-            Start Project
-          </span>
-          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white group-hover:bg-blue-500 transition-colors">
-            <ArrowRight size={18} strokeWidth={2.5} />
-          </div>
-        </motion.button>
-      </motion.div>
+      {/* 4. Widened CTA Button with White/Black Theme */}
+<motion.div 
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
+  className="mb-12 z-10 w-full flex justify-center px-4" 
+>
+  <motion.button 
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+    /* Added w-full max-w-fit to ensure it handles long text responsibly */
+    className="group flex items-center justify-between gap-4 md:gap-8 bg-[#0A0A0A] border border-zinc-800 pl-6 md:pl-12 pr-2 py-2 rounded-full transition-all duration-300 hover:bg-[#111] w-full max-w-fit"
+  >
+    {/* Added whitespace-nowrap and adjusted tracking for better fit */}
+    <span className="text-white text-[11px] md:text-[15px] font-semibold tracking-wider uppercase whitespace-nowrap">
+      Diagnose My Revenue System
+    </span>
+    
+    {/* flex-shrink-0 ensures the circle never gets squished or pushed down */}
+    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black group-hover:bg-zinc-200 transition-colors flex-shrink-0">
+      <ArrowRight size={20} strokeWidth={2.5} />
+    </div>
+  </motion.button>
+</motion.div>
 
       {/* 5. Minimalist Bottom Dock */}
       <motion.div 
@@ -102,7 +106,7 @@ const HeroSection = () => {
           <span className="text-zinc-500 text-[10px] uppercase tracking-widest hidden md:block">Verified Results</span>
         </div>
 
-        {/* Metrics - Centered items and text */}
+        {/* Metrics */}
         <div className="flex items-center gap-12 md:gap-20">
            <div className="flex flex-col items-center text-center">
               <p className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-none mb-2">15+</p>
