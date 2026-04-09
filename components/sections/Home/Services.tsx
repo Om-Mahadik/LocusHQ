@@ -6,9 +6,9 @@ import StickyServices from "@/components/ui/Home/StickyServices";
 
 export default function Services() {
   return (
-    // Changed py-24 to pt-24 pb-0 to remove bottom padding; 
-    // Reduced md:py-32 to md:pt-32 md:pb-12 to tighten the bottom
-    <section className="bg-black pt-24 pb-12 md:pt-32 md:pb-16 antialiased font-sans w-full">
+    // Changed pt-24 and md:pt-32 to pt-0 to remove top space
+    // Kept bottom padding (pb-12 / md:pb-16) as requested
+    <section className="bg-black pt-0 pb-12 md:pb-16 antialiased font-sans w-full">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         
         {/* Header Section */}
@@ -30,11 +30,8 @@ export default function Services() {
           </motion.div>
         </div>
 
-        {/* Added mt-12 (md:mt-16) to increase gap between heading and services.
-            The "pb-[10vh]" inside StickyServices usually creates bottom space, 
-            so we ensure this wrapper doesn't add more. 
-        */}
-        <div className="relative mt-8 ">
+        {/* Services Wrapper */}
+        <div className="relative mt-8">
           <StickyServices />
         </div>
 
