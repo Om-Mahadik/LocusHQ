@@ -6,8 +6,8 @@ import MNavbar from "@/components/sections/Layout/MNavbar";
 import DNavBar from "@/components/sections/Layout/DNavBar";
 import Footer from "@/components/sections/Layout/Footer";
 
-// A premium ease-in-out curve (starts slow, speeds up, glides to a stop)
-const premiumEaseInOut = [0.65, 0, 0.35, 1];
+// FIX: Added 'as const' to ensure TypeScript recognizes this as a cubic-bezier tuple
+const premiumEaseInOut = [0.65, 0, 0.35, 1] as const;
 
 export default function ClientLayout({
   children,
@@ -35,7 +35,8 @@ export default function ClientLayout({
     };
   }, []);
 
-  const onDragEnd = (_: any, info: any) => {
+  // Changed type from 'any' to specific Framer Motion types for better practice
+  const onDragEnd = (_: any, info: { offset: { x: number }; velocity: { x: number } }) => {
     if (info.offset.x > 50 && info.velocity.x > 20) {
       setIsOpen(false);
     }
@@ -56,7 +57,6 @@ export default function ClientLayout({
         dragElastic={0.05}
         onDragEnd={onDragEnd}
         animate={{ x: mounted && isOpen ? "-82%" : "0%" }}
-        // APPLIED PREMIUM EASE-IN-OUT HERE
         transition={{ duration: 0.5, ease: premiumEaseInOut }}
         style={{ willChange: "transform" }}
         className="relative z-[100] min-h-screen bg-transparent overflow-x-hidden"
@@ -67,7 +67,6 @@ export default function ClientLayout({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              // MATCHED THE EASE-IN-OUT FOR THE OVERLAY
               transition={{ duration: 0.4, ease: premiumEaseInOut }}
               style={{ willChange: "opacity" }}
               className="absolute inset-0 z-50 bg-black/40 backdrop-blur-sm"
