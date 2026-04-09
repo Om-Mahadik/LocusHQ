@@ -14,7 +14,6 @@ const HeroSection = () => {
   ];
 
   return (
-    /* Changed min-h-screen to h-auto and pb-20 to pb-0 */
     <section className="relative h-auto w-full bg-[#000] text-white flex flex-col items-center px-6 pt-28 pb-0 overflow-hidden">
       
       {/* 1. Sophisticated Background Ambience */}
@@ -43,8 +42,6 @@ const HeroSection = () => {
 
       {/* 3. High-Impact Headline & Paragraph */}
       <div className="text-center max-w-5xl z-10 flex flex-col items-center">
-        
-        {/* Massive Title: Pure White & Yellow */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +52,6 @@ const HeroSection = () => {
           <span className="text-[#fff12b]">Growth Systems.</span>
         </motion.h1>
         
-        {/* Paragraph: Pure White & Justified */}
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -106,18 +102,18 @@ const HeroSection = () => {
           <span className="text-zinc-500 text-[10px] uppercase tracking-widest hidden md:block">Verified Results</span>
         </div>
 
-        {/* Metrics */}
+        {/* Metrics - Centered items and text */}
         <div className="flex items-center gap-12 md:gap-20">
-           <div className="flex flex-col items-center md:items-start">
+           <div className="flex flex-col items-center text-center">
               <p className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-none mb-2">15+</p>
-              <p className="text-[10px] text-zinc-500 uppercase tracking-[0.2em] font-medium">Brands Grown</p>
+              <p className="text-[11px] text-white font-normal tracking-wide">Brands Grown</p>
            </div>
            
            <div className="w-[1px] h-10 bg-white/10" />
            
-           <div className="flex flex-col items-center md:items-start">
+           <div className="flex flex-col items-center text-center">
               <p className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-none mb-2">$500K+</p>
-              <p className="text-[10px] text-zinc-500 uppercase tracking-[0.2em] font-medium">Ad Managed</p>
+              <p className="text-[11px] text-white font-normal tracking-wide">Ad Managed</p>
            </div>
         </div>
       </motion.div>
