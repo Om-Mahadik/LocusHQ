@@ -3,10 +3,10 @@
 import React from "react";
 
 const features = [
-  "GoHighLevel (GHL)",
-  "ManyChat Flows",
-  "AI Creative & Copy",
-  "Multi-Platform Attribution"
+  "Instant AI Qualification",
+  "Multichannel Conversion Sequences",
+  "Automated Pipeline Movement",
+  "Live Revenue Visibility"
 ];
 
 export default function LeadJourneyContent() {
@@ -19,7 +19,7 @@ export default function LeadJourneyContent() {
       </h2>
 
       {/* Description Body - Updated to White and Justified */}
-      <p className="text-[14px] md:text-[28px] font-normal text-white/100 leading-[1.3] text-justify [text-justify:inter-word] mb-8">
+      <p className="text-[14px] md:text-[28px] font-normal text-white/100 leading-[1.3] text-center [text-justify:inter-word] mb-8">
         Most agencies hand you a lead and walk away. We build what happens next. 
         A prospect clicks your ad at 11pm. Within 4 minutes, they receive a 
         personalised WhatsApp message and get qualified.
