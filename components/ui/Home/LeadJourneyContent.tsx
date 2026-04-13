@@ -11,15 +11,15 @@ const features = [
 
 export default function LeadJourneyContent() {
   return (
-    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-      {/* Main Headline */}
-      <h2 className="text-[28px] md:text-[42px] font-bold text-white leading-[1.1] tracking-tight mb-6">
+    <div className="flex flex-col items-center md:items-start">
+      {/* Main Headline - Center on mobile, Left on PC */}
+      <h2 className="text-[28px] md:text-[42px] font-bold text-white leading-[1.1] tracking-tight mb-6 text-center md:text-left">
         Every prospect enters a system,<br />
         Not spreadsheets.
       </h2>
 
-      {/* Description Body - Updated to White and Justified */}
-      <p className="text-[14px] md:text-[28px] font-normal text-white/100 leading-[1.3] text-center [text-justify:inter-word] mb-8">
+      {/* Description Body - Center on mobile, Left & Justified on PC */}
+      <p className="text-[14px] md:text-[18px] font-normal text-white/100 leading-[1.5] text-center md:text-left md:text-justify [text-justify:inter-word] mb-8 max-w-2xl">
         Most agencies hand you a lead and walk away. We build what happens next. 
         A prospect clicks your ad at 11pm. Within 4 minutes, they receive a 
         personalised WhatsApp message and get qualified.
