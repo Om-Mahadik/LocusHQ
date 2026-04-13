@@ -2,136 +2,139 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Fingerprint, Zap, ShieldCheck, BarChart3 } from 'lucide-react';
 
 const steps = [
-  { id: 1, icon: <Fingerprint size={36} strokeWidth={1} />, title: "Audit & Diagnose", desc: "We map where you are, where money is leaking, and what your customer acquisition actually looks like end-to-end." },
-  { id: 2, icon: <Zap size={36} strokeWidth={1} />, title: "Campaign Architecture", desc: "Campaign structure, audience segmentation, and tracking setup — all built before the first dollar is spent." },
-  { id: 3, icon: <ShieldCheck size={36} strokeWidth={1} />, title: "AI Lead Journey", desc: "GHL automations and WhatsApp sequences that respond in under 5 minutes to book the call — automatically." },
-  { id: 4, icon: <BarChart3 size={36} strokeWidth={1} />, title: "Optimize & Scale", desc: "Weekly performance reviews. If something isn't working, we fix it. When efficiency is hit, we scale spend." }
+  { 
+    id: 1, 
+    title: "Audit & Diagnose", 
+    desc: "We map where you are, where money is leaking, and what your customer acquisition actually looks like end-to-end. Before we touch a single campaign, we understand the full picture." 
+  },
+  { 
+    id: 2, 
+    title: "Build the Campaign Architecture", 
+    desc: "Campaign structure, audience segmentation, creative brief, offer construction, and tracking setup — all built before the first dollar is spent. We don't guess. We engineer." 
+  },
+  { 
+    id: 3, 
+    title: "Deploy AI-Powered Lead Journey", 
+    desc: "The ad brings them in. The system takes over. GHL automations, ManyChat flows, and WhatsApp sequences that respond in under 5 minutes, qualify the lead, and book the call — automatically. No lead goes cold." 
+  },
+  { 
+    id: 4, 
+    title: "Optimise, Report, Scale", 
+    desc: "Weekly performance reviews. Honest numbers. If something isn't working, we say it and fix it — not hide it in a reach report. When efficiency is hit, we scale spend. Always moving." 
+  }
 ];
 
-export default function ProcessFlowMobile() {
+export default function ProcessFlow() {
   const [activeStep, setActiveStep] = useState(1);
-  const STEP_DURATION = 5000; // 5 seconds per step
+  const STEP_DURATION = 5000;
 
-  // Bulletproof Timer Logic ensures no double-skipping
   useEffect(() => {
     const timer = setTimeout(() => {
       setActiveStep((prev) => (prev === steps.length ? 1 : prev + 1));
     }, STEP_DURATION);
-
     return () => clearTimeout(timer);
   }, [activeStep]);
 
   return (
-    <div className="md:hidden w-full px-6 py-16 bg-black text-white select-none flex flex-col">
-      
-      {/* 1. HEADER */}
-      <div className="mb-14 text-center">
-        <h2 className="text-3xl font-bold tracking-tight mb-3">
-          The Process
-        </h2>
-        <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-[280px] mx-auto">
-          Four steps. From zero signal to booked client.
-        </p>
-      </div>
-
-      {/* 2. NUMBER & LINE TIMELINE */}
-      <div className="relative flex items-center justify-between mb-16 px-2">
-        {/* Faded Background Line */}
-        <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-[1px] bg-white/10 -z-20" />
-        
-        {/* Animated Active Line */}
-        <div 
-          className="absolute left-6 top-1/2 -translate-y-1/2 h-[1px] bg-white -z-10 transition-all duration-500 ease-out"
-          style={{ width: `calc(${((activeStep - 1) / (steps.length - 1)) * 100}% - 3rem)` }}
-        />
-
-        {/* The Numbers */}
-        {steps.map((step) => {
-          const isActive = activeStep === step.id;
-          const isPast = activeStep > step.id;
-          return (
-            <button
-              key={step.id}
-              onClick={() => setActiveStep(step.id)}
-              className="bg-black px-3 py-1 outline-none" // bg-black masks the line behind the number
-            >
-              <span 
-                className={`font-mono text-sm tracking-widest transition-all duration-500 ${
-                  isActive ? 'text-white font-bold scale-110 inline-block' : isPast ? 'text-white/60' : 'text-zinc-700'
-                }`}
-              >
-                0{step.id}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 3. OPEN CENTER HUD (The Timer) */}
-      <div className="relative w-48 h-48 mx-auto mb-12 shrink-0 flex items-center justify-center">
-        
-        {/* Very faint ambient light behind the icon */}
-        <div className="absolute inset-0 bg-white/[0.02] blur-[40px] rounded-full pointer-events-none" />
-
-        {/* SVG Progress Ring */}
-        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 192 192">
-          {/* Background Track */}
-          <circle cx="96" cy="96" r="94" fill="none" stroke="currentColor" strokeWidth="1" className="text-white/10" />
+    <section className="w-full px-6 py-20 bg-black text-white font-sans antialiased overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
           
-          {/* Animated White Progress Line */}
-          <motion.circle
-            key={`circle-${activeStep}`}
-            cx="96" cy="96" r="94" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
-            strokeLinecap="round"
-          />
-        </svg>
-
-        {/* Centered Icon Animation */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeStep}
-            initial={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
-            animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-            exit={{ scale: 0.8, opacity: 0, filter: "blur(4px)" }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 flex items-center justify-center text-white"
-          >
-            {steps[activeStep - 1].icon}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* 4. TEXT CONTENT AREA (Fixed Height Prevents Jumping) */}
-      <div className="relative h-[160px] w-full text-center shrink-0">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeStep}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="absolute inset-0 flex flex-col items-center justify-start"
-          >
-            <h3 className="text-2xl font-semibold text-white mb-3 tracking-tight">
-              {steps[activeStep - 1].title}
-            </h3>
-            <p className="text-zinc-500 text-[15px] leading-relaxed max-w-[320px]">
-              {steps[activeStep - 1].desc}
+          {/* --- LEFT COLUMN --- */}
+          <div className="md:col-span-1 flex flex-col justify-start text-center md:text-left md:sticky md:top-32">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
+              A simple setup that <br className="hidden md:block" />
+              gets you moving fast
+            </h2>
+            <p className="text-zinc-400 text-base md:text-xl leading-relaxed max-w-md mx-auto md:mx-0">
+              Set it up once, bring your team in, and run everything from one dashboard.
             </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+          </div>
 
-    </div>
+          {/* --- RIGHT COLUMN --- */}
+          <div className="md:col-span-1 flex flex-col h-[450px] md:h-[450px]">
+            {steps.map((step, index) => {
+              const isActive = activeStep === step.id;
+              const isLast = index === steps.length - 1;
+
+              return (
+                <div 
+                  key={step.id} 
+                  className="relative flex items-start gap-x-6 w-full"
+                >
+                  {/* Indicator & Line */}
+                  <div className="flex flex-col items-center flex-shrink-0 relative">
+                    <button
+                      onClick={() => setActiveStep(step.id)}
+                      className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-xl border-2 transition-all duration-500 ease-out ${
+                        isActive 
+                          ? 'bg-white border-white scale-125 shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
+                          : 'border-zinc-800 bg-black hover:border-zinc-600'
+                      }`}
+                    >
+                      <span className={`font-mono font-black text-lg transition-all duration-500 ${
+                        isActive ? 'text-black scale-110' : 'text-zinc-500'
+                      }`}>
+                        0{step.id}
+                      </span>
+                    </button>
+
+                    {!isLast && (
+                      <div className="absolute top-14 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-zinc-800" />
+                    )}
+                  </div>
+
+                  {/* Content Block */}
+                  <div 
+                    className="flex flex-col flex-grow pt-2 pb-10 cursor-pointer" 
+                    onClick={() => setActiveStep(step.id)}
+                  >
+                    <div className="flex flex-col mb-1">
+                      {/* Updated Title size: text-lg md:text-xl */}
+                      <h3 className={`text-lg md:text-xl font-bold transition-all duration-500 tracking-tight ${
+                        isActive ? 'text-white' : 'text-zinc-600'
+                      }`}>
+                        {step.title}
+                      </h3>
+                    </div>
+                    
+                    <AnimatePresence mode="wait">
+                      {isActive && (
+                        <motion.div
+                          key={`content-${step.id}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          {/* Updated Description size: text-[13px] md:text-sm */}
+                          <p className="text-zinc-400 text-[13px] md:text-sm leading-relaxed mt-2 max-w-md text-justify [text-justify:inter-word]">
+                            {step.desc}
+                          </p>
+                          
+                          {/* Progress bar */}
+                          <div className="mt-6 w-full h-[1px] bg-zinc-900 rounded-full overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              animate={{ width: '100%' }}
+                              transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
+                              className="h-full bg-white"
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }

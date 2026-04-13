@@ -6,7 +6,8 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 const HeroSection = () => {
-  const [highlightColor, setHighlightColor] = useState("#913eff");
+  // 1. Defined the type as <HTMLInputElement> to fix the 'never' error
+  const [highlightColor, setHighlightColor] = useState("#5A30FF");
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   const flags = [
@@ -61,6 +62,7 @@ const HeroSection = () => {
           </span>
         </motion.h1>
 
+        {/* Hex Code Display for Client Confirmation */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -82,6 +84,7 @@ const HeroSection = () => {
         </motion.p>
       </div>
 
+      {/* 4. Hidden Input (Now recognized by TS) */}
       <input
         type="color"
         ref={colorInputRef}
@@ -90,7 +93,7 @@ const HeroSection = () => {
         className="sr-only"
       />
 
-      {/* 4. CTA Button */}
+      {/* 5. CTA Button */}
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -111,19 +114,13 @@ const HeroSection = () => {
         </motion.button>
       </motion.div>
 
-      {/* 5. Bottom Metrics */}
+      {/* 6. Bottom Metrics */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.9 }}
-        className="w-full max-w-4xl z-10 border-t border-white/10 pt-8 pb-10 flex items-center justify-center gap-12 md:gap-24"
+        className="w-full max-w-4xl z-10 border-t border-white/10 pt-8 pb-10 flex flex-col md:flex-row items-center justify-center"
       >
-        <div className="flex flex-col items-center text-center">
-          <p className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-none mb-2">$2M+</p>
-          <p className="text-[11px] text-white/50 font-normal tracking-wide uppercase">Ad Managed</p>
-        </div>
-
-        {/* New Metric */}
         <div className="flex flex-col items-center text-center">
           <p className="text-4xl md:text-5xl font-black tracking-tighter text-white leading-none mb-2">25+</p>
           <p className="text-[11px] text-white/50 font-normal tracking-wide uppercase">Brands Scaled</p>
