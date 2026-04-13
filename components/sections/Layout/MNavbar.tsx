@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { Home, Zap, Briefcase, User, Mail, Menu, X } from "lucide-react";
 
@@ -14,12 +14,36 @@ const menuItems = [
 ];
 
 export default function MNavbar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (v: boolean) => void }) {
+  // 1. State to track visibility based on scroll direction
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+
+  // 2. Logic to detect scroll direction
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    
+    // Only hide if the menu is NOT open
+    if (latest > previous && latest > 150 && !isOpen) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
   return (
     <>
-      {/* Mobile Top Bar - Visible only on mobile (md:hidden) */}
-      <nav className="fixed top-0 left-0 right-0 z-[200] flex md:hidden items-center justify-between px-6 py-8 pointer-events-none">
+      {/* Mobile Top Bar - Wrapped in a motion.nav for hiding logic */}
+      <motion.nav 
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: -120 }, // Moves the bar off-screen
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed top-0 left-0 right-0 z-[200] flex md:hidden items-center justify-between px-6 py-8 pointer-events-none"
+      >
         
-        {/* Logo with Difference Blend (Auto-Inverts) */}
+        {/* Logo with Difference Blend */}
         <motion.div 
           animate={isOpen ? { x: 30 } : { x: 0 }}
           transition={{ type: "spring", damping: 25 }}
@@ -30,7 +54,7 @@ export default function MNavbar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
           </Link>
         </motion.div>
 
-        {/* Small Pill Button - Solid Dark Gray (No Inversion) */}
+        {/* Small Pill Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`group flex items-center gap-2 h-9 px-4 rounded-full pointer-events-auto transition-all duration-300 shadow-lg border border-white/5 ${
@@ -44,16 +68,13 @@ export default function MNavbar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
             {isOpen ? <X size={14} strokeWidth={3} /> : <Menu size={14} strokeWidth={3} />}
           </div>
         </button>
-      </nav>
+      </motion.nav>
 
-      {/* Dark Theme Menu Background - Visible only on mobile (md:hidden) */}
+      {/* Dark Theme Menu Background */}
       <div className={`fixed inset-0 z-[50] bg-[#0a0a0a] flex md:hidden justify-end overflow-hidden transition-opacity duration-500 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="w-[82%] h-full flex flex-col justify-between px-10 py-24">
           
-          <div className="flex items-center gap-4 opacity-20">
-  
-
-          </div>
+          <div className="flex items-center gap-4 opacity-20"></div>
 
           {/* Links Section */}
           <div className="flex flex-col gap-8">
@@ -81,13 +102,12 @@ export default function MNavbar({ isOpen, setIsOpen }: { isOpen: boolean, setIsO
           </div>
 
           {/* Footer Info */}
-          <div className="space-y-4 mt">
+          <div className="space-y-4">
             <div className="h-[1px] w-full bg-white/5" />
             <div className="flex flex-col gap-1">
-              <p className="text-[14px] font-medium tracking-widest text-white-500">
+              <p className="text-[14px] font-medium tracking-widest text-zinc-500">
                 LocusHQ
               </p>
-
               <p className="text-[9px] font-medium text-zinc-600 uppercase tracking-tighter">
                 © 2026 Delhi, IN
               </p>

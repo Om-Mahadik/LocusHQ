@@ -109,9 +109,9 @@ const FeatureThree = () => {
 
         <p className={`text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500
           ${isActive ? 'text-black/80' : 'text-[#888888]'}`}>
-          Strategically scaling brands through unified operations <br className="hidden md:block" />
+          India · Canada · Australia · USA <br className="hidden md:block" />
           <span className={`block mt-1 font-bold ${isActive ? 'text-black' : 'text-white'} transition-colors`}>
-            India · Canada · Australia · USA
+            
           </span>
         </p>
       </div>

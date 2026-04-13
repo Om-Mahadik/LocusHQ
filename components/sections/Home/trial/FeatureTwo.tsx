@@ -121,9 +121,9 @@ const FeatureTwo = () => {
 
         <p className={`text-[#888888] text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500
           ${isActive ? 'text-white/90' : ''}`}>
-          Banquet, restaurant, real estate, and service business inquiries 
+          Specific markets. Documented results.
           <span className={`${isActive ? 'text-white block mt-1' : 'text-white block mt-1'} transition-colors`}>
-            with documented CPL data.
+
           </span>
         </p>
       </div>

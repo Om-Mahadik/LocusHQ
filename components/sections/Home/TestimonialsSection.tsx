@@ -6,14 +6,38 @@ import { Star } from "lucide-react";
 import { TestimonialsCard, Testimonial } from "@/components/ui/Home/TestimonialsCard";
 
 const testimonialsData: Testimonial[] = [
-  { quote: "We launched in Rajouri Garden Delhi's most competitive food corridors. In 90 days the campaigns brought us to ₹20 lakhs a month.", clientName: "Avora Cafe", clientLocation: "Delhi, India" },
-  { quote: "Our cost per lead dropped 25% and the volume actually went up at the same time. They delivered both.", clientName: "Aroha Banquet", clientLocation: "Delhi, India" },
-  { quote: "Building a customer base in Toronto from scratch is hard. They understood the market and built us a profitable engine.", clientName: "Tamasha Toronto", clientLocation: "Toronto, Canada" },
-  { quote: "The lead quality from GHL is night and day compared to our previous agency. Highly recommended for ROI.", clientName: "Luxe Medspa", clientLocation: "Sydney, Australia" },
-  { quote: "Systematic scaling began after 60 days. The data-driven approach is what separates LocusHQ from others.", clientName: "Solar Grid", clientLocation: "Vancouver, Canada" }
+  { 
+    quote: "We'd tried two other agencies before this. Both delivered reach, neither delivered reservations. LocusHQ rebuilt how leads moved through our system — ads, follow-up, booking flow. Tables started filling consistently within 5-6 weeks. No gimmicks, no discounts.", 
+    clientName: "James Kowalski", 
+    clientLocation: "Toronto, ON · Restaurant" 
+  },
+  { 
+    quote: "The difference was that they didn't stop at lead gen. They built a qualification flow so anyone booking a consult already knew the pricing and was serious. My no-show rate dropped and the quality of clients improved noticeably.", 
+    clientName: "Priya Menon", 
+    clientLocation: "Brampton, ON · MedSpa" 
+  },
+  { 
+    quote: "We had volume but most of it wasn't converting. Wrong area, wrong service type. After the system went live we were getting fewer leads but closing more of them. That's the shift we needed.", 
+    clientName: "Daniel Reeves", 
+    clientLocation: "Calgary, AB · HVAC" 
+  },
+  { 
+    quote: "What stood out was the diagnostic before anything was built. They mapped exactly where patients were dropping off — turned out it wasn't the ads, it was what happened after the click. Fast to work with, clear on what they were doing and why.", 
+    clientName: "Sarah Lin", 
+    clientLocation: "Vancouver, BC · Cosmetic Dentistry" 
+  },
+  { 
+    quote: "Half our consultation calls used to be people who weren't remotely ready. LocusHQ added a pre-qualification sequence before the call even happens. We stopped wasting hours and started closing more of the right people.", 
+    clientName: "Rajan Toor", 
+    clientLocation: "Mississauga, ON · Visa Consulting" 
+  },
+  { 
+    quote: "They started with a gap analysis — showed us where leads were going cold in our pipeline before pitching anything. That alone made them different from every other agency that had approached us.", 
+    clientName: "Michelle Carter", 
+    clientLocation: "Sydney, NSW · Real Estate" 
+  }
 ];
 
-// Animation Variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30, filter: "blur(10px)", scale: 0.95 },
   visible: { 
@@ -43,6 +67,7 @@ export default function TestimonialsSection() {
   const controls = useAnimation();
   
   const slideDuration = 4000;
+  // Duplicate data to ensure a smooth loop
   const extendedData = [...testimonialsData, ...testimonialsData];
 
   useEffect(() => {

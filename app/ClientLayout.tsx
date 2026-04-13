@@ -6,7 +6,6 @@ import MNavbar from "@/components/sections/Layout/MNavbar";
 import DNavBar from "@/components/sections/Layout/DNavBar";
 import Footer from "@/components/sections/Layout/Footer";
 
-// FIX: Added 'as const' to ensure TypeScript recognizes this as a cubic-bezier tuple
 const premiumEaseInOut = [0.65, 0, 0.35, 1] as const;
 
 export default function ClientLayout({
@@ -35,7 +34,6 @@ export default function ClientLayout({
     };
   }, []);
 
-  // Changed type from 'any' to specific Framer Motion types for better practice
   const onDragEnd = (_: any, info: { offset: { x: number }; velocity: { x: number } }) => {
     if (info.offset.x > 50 && info.velocity.x > 20) {
       setIsOpen(false);
@@ -59,7 +57,10 @@ export default function ClientLayout({
         animate={{ x: mounted && isOpen ? "-82%" : "0%" }}
         transition={{ duration: 0.5, ease: premiumEaseInOut }}
         style={{ willChange: "transform" }}
-        className="relative z-[100] min-h-screen bg-transparent overflow-x-hidden"
+        /** * FIX: Swapped 'overflow-x-hidden' for 'overflow-x-clip'
+         * 'clip' prevents horizontal scroll without breaking 'position: sticky'
+         */
+        className="relative z-[100] min-h-screen bg-transparent overflow-x-clip"
       >
         <AnimatePresence>
           {mounted && isOpen && (
@@ -76,7 +77,10 @@ export default function ClientLayout({
         </AnimatePresence>
 
         <div className={isOpen ? "pointer-events-none select-none" : ""}>
-          <main>{children}</main>
+          {/** * Ensure no parent inside <main> has overflow-hidden either.
+           * Sticky only works if the path to the root is 'visible' or 'clip'.
+           */}
+          <main className="overflow-visible">{children}</main>
           <Footer />
         </div>
       </motion.div>

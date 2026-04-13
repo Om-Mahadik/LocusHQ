@@ -108,7 +108,7 @@ const FeatureOne = () => {
 
         <p className={`text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500 max-w-[90%]
           ${isActive ? 'text-black/80' : 'text-[#888888]'}`}>
-          Across hospitality, real estate, B2B, and service businesses in India, Canada, Australia, and USA.
+          Documented across 6 verticals in 4 markets.
 
         </p>
       </div>

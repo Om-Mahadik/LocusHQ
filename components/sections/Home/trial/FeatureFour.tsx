@@ -34,7 +34,7 @@ const FeatureFour = () => {
       // Early Number Trigger (Starts at 20% scroll)
       if (latest > 0.20 && !hasAnimated.current) {
         hasAnimated.current = true;
-        animate(0, 15, { // Updated to target 15 brands
+        animate(0, 25, { // Updated to target 15 brands
           duration: 3,
           ease: [0.16, 1, 0.3, 1], 
           onUpdate: (value) => setDisplayValue(Math.round(value)),
@@ -108,9 +108,9 @@ const FeatureFour = () => {
 
         <p className={`text-sm md:text-base leading-snug font-medium w-full transition-colors duration-500 max-w-[90%]
           ${isActive ? 'text-black/80' : 'text-[#888888]'}`}>
-          Restaurants, event venues, and service businesses 
+          Full acquisition-to-close infrastructure, not just ads. 
           <span className={`block mt-1 font-bold ${isActive ? 'text-black' : 'text-white'} transition-colors`}>
-            across 4 countries.
+            
           </span>
         </p>
       </div>

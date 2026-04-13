@@ -14,8 +14,8 @@ export default function LeadJourneyContent() {
     <div className="flex flex-col items-center md:items-start text-center md:text-left">
       {/* Main Headline */}
       <h2 className="text-[28px] md:text-[42px] font-bold text-white leading-[1.1] tracking-tight mb-6">
-        Every prospect enters a system.<br />
-        Not a spreadsheet.
+        Every prospect enters a system,<br />
+        Not spreadsheets.
       </h2>
 
       {/* Description Body - Updated to White and Justified */}

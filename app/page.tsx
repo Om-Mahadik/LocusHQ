@@ -19,6 +19,7 @@ import Features from "@/components/sections/Home/trial/Features";
 import StickySectionOriginal from "@/components/ui/Home/StickySectionOriginal";
 import { LogoSlider } from "@/components/ui/Home/LogoSlider";
 import { IndustrySlider } from "@/components/ui/Home/IndustrySlider";
+import ProcessFlow from "@/components/ui/Home/ProcessFlow";
 
 
 
@@ -31,7 +32,7 @@ export default function Home() {
       <IndustrySlider />
       <Features />
       <InfoSection />
-      <ProcessSection />
+      <ProcessFlow />
       <Services />
       <LeadJourneySection />
       <TestimonialsSection />

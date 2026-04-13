@@ -11,34 +11,70 @@ const serviceData = [
     sub: "Fill tables. Build regulars.",
     img: "/imgs/work1.jpg",
     metrics: [
-      { value: "12x", label: "Avg ROI" },
-      { value: "45k+", label: "Leads Gen" },
-      { value: "$ 2.4M", label: "Revenue" },
-      { value: "85%", label: "Fill Rate" },
+      { value: "4x", label: "AVG ROI" },
+      { value: "800+", label: "RESERVATIONS" },
+      { value: "$95K", label: "REVENUE" },
+      { value: "38%", label: "CONVERSION" },
     ],
   },
   {
     id: "02",
-    title: "Real Estate Generation",
-    sub: "Buyer leads. Seller leads.",
+    title: "HVAC & Home Services",
+    sub: "Service requests. Growth scaled.",
     img: "/imgs/work1.jpg",
     metrics: [
-      { value: "8x", label: "Avg ROI" },
-      { value: "12k+", label: "Buyer Leads" },
-      { value: "$ 45M", label: "Property Sold" },
-      { value: "92%", label: "Qual Rate" },
+      { value: "3.5x", label: "AVG ROI" },
+      { value: "600+", label: "REQUESTS" },
+      { value: "$110K", label: "REVENUE" },
+      { value: "28%", label: "CLOSE RATE" },
     ],
   },
   {
     id: "03",
-    title: "Med Spa & Aesthetic",
+    title: "Cosmetic Dentistry",
+    sub: "New patients. Perfect smiles.",
+    img: "/imgs/work1.jpg",
+    metrics: [
+      { value: "4x", label: "AVG ROI" },
+      { value: "320+", label: "APPOINTMENTS" },
+      { value: "$85K", label: "REVENUE" },
+      { value: "71%", label: "SHOW RATE" },
+    ],
+  },
+  {
+    id: "04",
+    title: "MedSpa & Aesthetics",
     sub: "Botox. Laser. Filler.",
     img: "/imgs/work1.jpg",
     metrics: [
-      { value: "15x", label: "Avg ROI" },
-      { value: "8k+", label: "Appointments" },
-      { value: "$ 2.1M", label: "Client Rev" },
-      { value: "95%", label: "Retention" },
+      { value: "4.5x", label: "AVG ROI" },
+      { value: "410+", label: "TREATMENTS" },
+      { value: "$92K", label: "REVENUE" },
+      { value: "58%", label: "REPEAT RATE" },
+    ],
+  },
+  {
+    id: "05",
+    title: "Real Estate",
+    sub: "Buyer leads. Seller leads.",
+    img: "/imgs/work1.jpg",
+    metrics: [
+      { value: "3x", label: "AVG ROI" },
+      { value: "480+", label: "QUALIFIED LEADS" },
+      { value: "$2.1M", label: "PIPELINE" },
+      { value: "34%", label: "SHOWING RATE" },
+    ],
+  },
+  {
+    id: "06",
+    title: "Visa & Immigration",
+    sub: "Global mobility. Simplified.",
+    img: "/imgs/work1.jpg",
+    metrics: [
+      { value: "3.5x", label: "AVG ROI" },
+      { value: "520+", label: "CONSULTATIONS" },
+      { value: "$48K", label: "REVENUE" },
+      { value: "22%", label: "CLIENT RATE" },
     ],
   },
 ];
@@ -74,16 +110,16 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
         style={{ backgroundColor: bg, borderColor: borderMain }}
         className="w-full border rounded-[2rem] p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-12"
       >
-        {/* Mobile: Title comes first (order-1), Desktop: Title is inside the right column */}
+        {/* Mobile Header */}
         <div className="block md:hidden order-1 w-full text-center">
-            <motion.h3 style={{ color: textMain }} className="text-2xl font-semibold tracking-tight">
-              {service.title}
-            </motion.h3>
+          <motion.h3 style={{ color: textMain }} className="text-2xl font-semibold tracking-tight">
+            {service.title}
+          </motion.h3>
         </div>
 
-        {/* Image Container: Order 2 on mobile, Order 1 on desktop. height increased to [550px] on desktop */}
+        {/* Visual Column: Changed to aspect-square to maintain ratio on all screens */}
         <motion.div 
-          className="w-full md:w-1/2 h-64 md:h-[550px] relative rounded-xl overflow-hidden order-2 md:order-1"
+          className="w-full md:w-1/2 aspect-square relative rounded-xl overflow-hidden order-2 md:order-1"
         >
           <img
             src={service.img}
@@ -92,10 +128,10 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
           />
         </motion.div>
 
-        {/* Content Column: Order 3 on mobile, Order 2 on desktop */}
+        {/* Content Column */}
         <div className="w-full md:w-1/2 flex flex-col items-center text-center gap-6 order-3 md:order-2">
           
-          {/* Desktop Only Title */}
+          {/* Desktop Header */}
           <div className="hidden md:flex flex-col items-center gap-1">
             <motion.h3 style={{ color: textMain }} className="text-3xl font-semibold tracking-tight">
               {service.title}
@@ -105,18 +141,24 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
           {/* Metrics Grid */}
           <motion.div 
             style={{ borderColor: borderTable }} 
-            className="grid grid-cols-2 w-full border-l border-t"
+            className="grid grid-cols-2 w-full border-l border-t overflow-hidden"
           >
             {service.metrics.map((metric, idx) => (
               <motion.div 
                 key={idx} 
                 style={{ borderColor: borderTable }}
-                className="flex flex-col items-center justify-center py-4 border-r border-b"
+                className="flex flex-col items-center justify-center py-3 md:py-4 border-r border-b"
               >
-                <motion.span style={{ color: textMain }} className="text-xl md:text-2xl font-bold">
+                <motion.span 
+                  style={{ color: textMain }} 
+                  className="text-2xl md:text-4xl font-bold leading-tight"
+                >
                   {metric.value}
                 </motion.span>
-                <motion.span style={{ color: textSub }} className="text-[9px] font-regular tracking-tighter">
+                <motion.span 
+                  style={{ color: textSub }} 
+                  className="text-[10px] md:text-xs font-medium tracking-widest mt-0.5"
+                >
                   {metric.label}
                 </motion.span>
               </motion.div>
@@ -129,7 +171,7 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
             whileTap={{ scale: 0.98 }}
             className="group flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-bold transition-all w-full md:w-auto"
           >
-            Case Studies
+            View Case Studies
             <ArrowUpRight className="w-4 h-4" />
           </motion.button>
         </div>
@@ -141,7 +183,6 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
 export default function StickyServices() {
   return (
     <div className="relative w-full bg-black px-0 md:px-6 py-0">
-      {/* max-w-6xl for desktop, full width for mobile */}
       <div className="w-full max-w-6xl mx-auto flex flex-col gap-4 md:gap-8 pb-[10vh] mt-4">
         {serviceData.map((service) => (
           <ServiceCard key={service.id} service={service} />
