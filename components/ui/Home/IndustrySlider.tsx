@@ -28,7 +28,7 @@ export const IndustrySlider = () => {
       
       {/* Header Text */}
       <div className="text-center mb-10">
-        <span className="text-white text-[12px] font-regular tracking-widest uppercase">
+        <span className="text-white text-[12px] font-regular tracking-widest">
           Industries we serve
         </span>
       </div>

@@ -111,7 +111,7 @@ export default function InfoSection() {
           {/* Subtext updated with text-justify */}
           <motion.p 
             variants={itemVariants} 
-            className="text-[14px] md:text-[28px] font-regular text-white/90 leading-[1.3] mt-8 text-justify [text-justify:inter-word]"
+            className="text-[14px] md:text-[28px] font-regular text-white/90 leading-[1.3] mt-8 text-center"
           >
             From the first scroll to the signed contract - paid media, AI automation, and conversion systems that work while you sleep.
           </motion.p>
