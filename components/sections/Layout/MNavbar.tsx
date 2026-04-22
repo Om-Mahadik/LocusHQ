@@ -8,7 +8,7 @@ import { Home, Zap, Briefcase, User, Mail, Menu, X } from "lucide-react";
 const menuItems = [
   { name: "Home", href: "/", icon: <Home size={18} /> },
   { name: "Services", href: "/services", icon: <Zap size={18} /> },
-  { name: "Work", href: "/work", icon: <Briefcase size={18} /> },
+  { name: "Work", href: "/works", icon: <Briefcase size={18} /> },
   { name: "About", href: "/about", icon: <User size={18} /> },
   { name: "Contact", href: "/contact", icon: <Mail size={18} /> },
 ];

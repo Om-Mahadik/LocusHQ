@@ -7,7 +7,7 @@ import Link from "next/link";
 const menuItems = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
-  { name: "Work", href: "/work" },
+  { name: "Work", href: "/works" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" }, // New field added
 ];

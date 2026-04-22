@@ -5,7 +5,7 @@ import FAQsSection from "@/components/sections/Home/FAQsSection";
 import FinalCTASection from "@/components/sections/Home/FinalCTASection";
 import TestimonialsSection from "@/components/sections/Home/TestimonialsSection";
 import ProcessSection from "@/components/sections/Home/ProcessSection";
-import { Info } from "lucide-react";
+import { Info, Scroll } from "lucide-react";
 import InfoSection from "@/components/sections/Home/InfoSection";
 import LeadJourneySection from "@/components/sections/Home/LeadJourneySection";
 import WorkSection from "@/components/sections/Work/WorkSection";
@@ -20,6 +20,7 @@ import StickySectionOriginal from "@/components/ui/Home/StickySectionOriginal";
 import { LogoSlider } from "@/components/ui/Home/LogoSlider";
 import { IndustrySlider } from "@/components/ui/Home/IndustrySlider";
 import ProcessFlow from "@/components/ui/Home/ProcessFlow";
+import ScrollRevealSection from "@/components/sections/Home/ScrollRevealSection";
 
 
 
@@ -30,6 +31,7 @@ export default function Home() {
       <HeroSection />
       <LogoSlider />
       <IndustrySlider />
+      <ScrollRevealSection />
       <Features />
       <InfoSection />
       <ProcessFlow />

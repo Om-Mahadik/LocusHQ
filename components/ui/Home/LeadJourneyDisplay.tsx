@@ -11,7 +11,7 @@ const innerOrbit = [
 
 const outerOrbit = [
   { src: "/icons/Gemini.svg", alt: "Gemini" },
-  { src: "/icons/GHLAutomation.svg", alt: "GHL" },
+  { src: "/icons/GHLAutomation.png", alt: "GHL" },
   { src: "/icons/GoogleAnalytics.svg", alt: "Analytics" },
 ];
 
