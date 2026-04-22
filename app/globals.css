@@ -1,19 +1,31 @@
-/* 1. This MUST be the first line of your CSS file */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-
-/* 2. Then import Tailwind */
-@import "tailwindcss";
-
-/* 3. Link the font to the 'font-sans' class */
-@theme {
-  --font-sans: "Space Grotesk", sans-serif;
+/* 1. Define Local Font Faces (Using the OTF files you extracted) */
+@font-face {
+  font-family: 'GT Walsheim';
+  src: url('/fonts/GT-Walsheim-Regular-Trial.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
 }
 
-/* --- Your existing styles below --- */
+@font-face {
+  font-family: 'GT Walsheim';
+  src: url('/fonts/GT-Walsheim-Bold-Trial.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* 2. Import Tailwind */
+@import "tailwindcss";
+
+/* 3. Map GT Walsheim to the 'font-sans' variable */
+@theme {
+  --font-sans: "GT Walsheim", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* --- Your existing styles --- */
 
 @layer base {
   body {
-    /* This will now correctly pick up Space Grotesk */
+    /* font-sans now points to GT Walsheim */
     @apply bg-[#000000] text-white font-sans text-base;
   }
 

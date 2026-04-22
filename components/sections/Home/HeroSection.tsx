@@ -53,7 +53,7 @@ const HeroSection = () => {
           onClick={() => colorInputRef.current?.click()} 
           className="relative text-[60px] md:text-[115px] font-black tracking-tighter mb-4 leading-[0.95] cursor-pointer select-none"
         >
-          We Build <br className="md:hidden" /> <br></br>
+          We Build <br></br>
           <span 
             style={{ color: highlightColor }} 
             className="transition-colors duration-300"
