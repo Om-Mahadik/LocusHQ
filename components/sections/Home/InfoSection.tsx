@@ -18,7 +18,7 @@ const row1: PillData[] = [
 const row2: PillData[] = [
   { name: "GHL", icon: "/icons/GHLAutomation.png" },
   { name: "Star", icon: null },
-  { name: "Instagram", icon: "/icons/Insta.svg"}
+  { name: "Instagram", icon: "/icons/insta.svg"}
 ];
 
 const repeatArray = (arr: PillData[], times: number): PillData[] => 
