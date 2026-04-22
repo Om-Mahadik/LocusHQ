@@ -3,42 +3,14 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 
-const faqsData = [
-  {
-    question: "We already run Meta ads. Why aren't they converting to bookings?",
-    answer: [
-      "Because the ad is probably the only part of the system that exists. Meta ads on a Traffic objective send people to a website that requires multiple steps to book — and most leave before completing it.",
-      "Switching to a Messages objective and adding a qualification flow at the back end typically changes conversion rates significantly.",
-      "The ad creative is rarely the problem."
-    ]
-  },
-  {
-    question: "Do you run Google Ads for restaurants too, or just Meta?",
-    answer: [
-      "Both. Meta and Google target different intent states and they work best together.",
-      "Meta intercepts people in a passive scrolling state and creates demand. Google captures people who are already actively searching for a restaurant.",
-      "Running only one channel means missing a full segment of the market.",
-      "We manage both and allocate budget based on what each channel is producing week over week."
-    ]
-  },
-  {
-    question: "What does the automation actually do? Is it just a chatbot?",
-    answer: [
-      "It is a structured qualification and confirmation system, not a general-purpose chatbot.",
-      "It has three specific jobs: capture lead intent and contact details, trigger a booking confirmation within four minutes, and send one follow-up to unconfirmed leads at 24 hours.",
-      "It does not try to answer general questions about the menu or have open-ended conversations.",
-      "It converts leads into booked covers. That is its only function."
-    ]
-  },
-  {
-    question: "What is the entry cost to work with LocusHQ for a restaurant?",
-    answer: [
-      "The entry retainer for Canadian restaurants is $500 CAD per month, which covers paid media management, the qualification system, and booking automation.",
-      "Ad spend is separate and typically starts at $800–$1,500 CAD per month depending on the market.",
-      "Once the system is producing consistent results, accounts scale to a $1,000–$1,500 CAD retainer with expanded scope."
-    ]
-  }
-];
+// 1. Define the Interface for Props
+interface FAQsProps {
+  title: string;
+  faqs: {
+    question: string;
+    answer: string[];
+  }[];
+}
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -60,7 +32,8 @@ const fadeInUp: Variants = {
   }
 };
 
-export default function FAQs() {
+// 2. Update Component to accept props: { title, faqs }
+export default function FAQs({ title, faqs }: FAQsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [mounted, setMounted] = useState(false);
 
@@ -85,7 +58,8 @@ export default function FAQs() {
             Common Inquiries
           </span>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
-            What restaurant owners ask us before starting
+            {/* 3. Use the dynamic title prop */}
+            {title}
           </h2>
         </motion.div>
 
@@ -94,22 +68,21 @@ export default function FAQs() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          // Changed p-6 md:p-8 to px-6 py-2 (smaller vertical padding)
           className="rounded-[32px] bg-[#0A0A0A] border border-zinc-900 px-6 md:px-8 py-2"
         >
           <div className="flex flex-col">
-            {faqsData.map((faq, index) => {
+            {/* 4. Map through the dynamic faqs prop */}
+            {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
                 <motion.div 
                   key={`faq-item-${index}`} 
                   variants={fadeInUp}
-                  className={index !== faqsData.length - 1 ? "border-b border-zinc-900" : ""}
+                  className={index !== faqs.length - 1 ? "border-b border-zinc-900" : ""}
                 >
                   <button
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    // Reduced vertical padding from py-6 to py-4
                     className="group flex w-full items-center justify-between py-4 md:py-5 text-left outline-none"
                   >
                     <span className="pr-6 text-[15px] md:text-[16px] font-medium text-white transition-all">
@@ -135,7 +108,6 @@ export default function FAQs() {
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        {/* Tightened bottom padding */}
                         <div className="pb-5 space-y-4">
                           {faq.answer.map((para, i) => (
                             <p 
