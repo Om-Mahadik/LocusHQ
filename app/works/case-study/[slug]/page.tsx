@@ -12,6 +12,7 @@ import Overview from "@/components/sections/CaseStudy/Overview";
 import Stats from "@/components/sections/CaseStudy/Stats";
 import Three from "@/components/sections/CaseStudy/Three";
 import Two from "@/components/sections/CaseStudy/Two";
+import OtherStudies from "@/components/sections/CaseStudy/OtherStudies";
 
 export default function CaseStudyPage() {
   const params = useParams();
@@ -62,6 +63,8 @@ export default function CaseStudyPage() {
         title={study.faqsTitle} 
         faqs={study.faqs} 
       />
+
+      <OtherStudies currentSlug={decodedSlug} />
     </main>
   );
 }

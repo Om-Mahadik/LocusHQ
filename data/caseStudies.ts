@@ -2,6 +2,8 @@ export const caseStudies = [
   {
     slug: "hospitality-&-restaraunt",
 
+    category: "Hospitality & Restaurant",
+
     title: "Why restaurants get traffic but never fill their tables",
     subtitle: "A look at the exact revenue gaps we find in hospitality businesses — and the full-stack system we deploy to close them.",
 
@@ -105,6 +107,8 @@ export const caseStudies = [
   {
     slug: "hvac-&-home-services",
 
+    category: "HVAC & Home Services",
+
     title: "Why HVAC businesses get high CPL and low close rates",
     subtitle: "The acquisition and qualification failures that drain home service businesses — and the revenue system that fixes both simultaneously.",
 
@@ -196,6 +200,8 @@ export const caseStudies = [
 
   {
     slug: "cosmetic-dentistry",
+
+    category: "Cosmetic Dentistry",
 
     title: "Why dental clinics pay for leads that never show up",
     subtitle: "The qualification and show-rate failures costing cosmetic dental practices revenue every week — and the system that solves both.",
@@ -290,6 +296,8 @@ export const caseStudies = [
   {
     slug: "medspa-&-aesthetics",
 
+    category: "MedSpa & Aesthetics",
+
     title: "Why medspas acquire clients but struggle to keep them",
     subtitle: "The acquisition and retention failures in aesthetic businesses — and the revenue system that converts one-time bookings into repeat clients.",
 
@@ -383,10 +391,12 @@ export const caseStudies = [
   {
     slug: "real-estate",
 
+    category: "Real Estate",
+
     title: "Why real estate leads go cold before agents ever call them",
     subtitle: "The speed and qualification failures that drain real estate acquisition budgets — and the pipeline system built for a long buying cycle.",
 
-    heroImage: "",
+    heroImage: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=85",
 
     stats: [
       {
@@ -475,6 +485,8 @@ export const caseStudies = [
   
   {
     slug: "visa-&-immigration",
+
+    category: "Visa & Immmigration",
 
     title: "Why immigration consultants waste half their time on unqualified leads",
     subtitle: "The intake and qualification failures draining immigration consulting practices — and the system that ensures consultants only speak to eligible, ready prospects.",

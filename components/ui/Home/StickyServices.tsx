@@ -1,85 +1,13 @@
 "use client";
 
 import React, { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+// Import your actual data array
+import { caseStudies } from "@/data/caseStudies";
 
-const serviceData = [
-  {
-    id: "01",
-    title: "Hospitality & Restaurant",
-    sub: "Fill tables. Build regulars.",
-    img: "/imgs/work1.jpg",
-    metrics: [
-      { value: "4x", label: "AVG ROI" },
-      { value: "800+", label: "RESERVATIONS" },
-      { value: "$95K", label: "REVENUE" },
-      { value: "38%", label: "CONVERSION" },
-    ],
-  },
-  {
-    id: "02",
-    title: "HVAC & Home Services",
-    sub: "Service requests. Growth scaled.",
-    img: "/imgs/work1.jpg",
-    metrics: [
-      { value: "3.5x", label: "AVG ROI" },
-      { value: "600+", label: "REQUESTS" },
-      { value: "$110K", label: "REVENUE" },
-      { value: "28%", label: "CLOSE RATE" },
-    ],
-  },
-  {
-    id: "03",
-    title: "Cosmetic Dentistry",
-    sub: "New patients. Perfect smiles.",
-    img: "/imgs/work1.jpg",
-    metrics: [
-      { value: "4x", label: "AVG ROI" },
-      { value: "320+", label: "APPOINTMENTS" },
-      { value: "$85K", label: "REVENUE" },
-      { value: "71%", label: "SHOW RATE" },
-    ],
-  },
-  {
-    id: "04",
-    title: "MedSpa & Aesthetics",
-    sub: "Botox. Laser. Filler.",
-    img: "/imgs/work1.jpg",
-    metrics: [
-      { value: "4.5x", label: "AVG ROI" },
-      { value: "410+", label: "TREATMENTS" },
-      { value: "$92K", label: "REVENUE" },
-      { value: "58%", label: "REPEAT RATE" },
-    ],
-  },
-  {
-    id: "05",
-    title: "Real Estate",
-    sub: "Buyer leads. Seller leads.",
-    img: "/imgs/work1.jpg",
-    metrics: [
-      { value: "3x", label: "AVG ROI" },
-      { value: "480+", label: "QUALIFIED LEADS" },
-      { value: "$2.1M", label: "PIPELINE" },
-      { value: "34%", label: "SHOWING RATE" },
-    ],
-  },
-  {
-    id: "06",
-    title: "Visa & Immigration",
-    sub: "Global mobility. Simplified.",
-    img: "/imgs/work1.jpg",
-    metrics: [
-      { value: "3.5x", label: "AVG ROI" },
-      { value: "520+", label: "CONSULTATIONS" },
-      { value: "$48K", label: "REVENUE" },
-      { value: "22%", label: "CLIENT RATE" },
-    ],
-  },
-];
-
-const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
+const ServiceCard = ({ study }: { study: typeof caseStudies[0] }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -89,6 +17,7 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
 
   const steps = [0, 0.95, 0.951, 1];
 
+  // Animation transforms
   const bg = useTransform(scrollYProgress, steps, ["#ffffff", "#ffffff", "#0D0D0D", "#0D0D0D"]);
   const textMain = useTransform(scrollYProgress, steps, ["#18181b", "#18181b", "#ffffff", "#ffffff"]);
   const textSub = useTransform(scrollYProgress, steps, ["#52525b", "#52525b", "#71717a", "#71717a"]);
@@ -113,17 +42,17 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
         {/* Mobile Header */}
         <div className="block md:hidden order-1 w-full text-center">
           <motion.h3 style={{ color: textMain }} className="text-2xl font-semibold tracking-tight">
-            {service.title}
+            {study.category}
           </motion.h3>
         </div>
 
-        {/* Visual Column: Changed to aspect-square to maintain ratio on all screens */}
+        {/* Visual Column */}
         <motion.div 
           className="w-full md:w-1/2 aspect-square relative rounded-xl overflow-hidden order-2 md:order-1"
         >
           <img
-            src={service.img}
-            alt={service.title}
+            src={study.heroImage}
+            alt={study.title}
             className="absolute inset-0 w-full h-full object-cover"
           />
         </motion.div>
@@ -134,8 +63,11 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
           {/* Desktop Header */}
           <div className="hidden md:flex flex-col items-center gap-1">
             <motion.h3 style={{ color: textMain }} className="text-3xl font-semibold tracking-tight">
-              {service.title}
+              {study.category}
             </motion.h3>
+            <motion.p style={{ color: textSub }} className="text-sm italic">
+              "{study.subtitle.split('.')[0]}."
+            </motion.p>
           </div>
 
           {/* Metrics Grid */}
@@ -143,7 +75,7 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
             style={{ borderColor: borderTable }} 
             className="grid grid-cols-2 w-full border-l border-t overflow-hidden"
           >
-            {service.metrics.map((metric, idx) => (
+            {study.stats.slice(0, 4).map((stat, idx) => (
               <motion.div 
                 key={idx} 
                 style={{ borderColor: borderTable }}
@@ -153,27 +85,29 @@ const ServiceCard = ({ service }: { service: typeof serviceData[0] }) => {
                   style={{ color: textMain }} 
                   className="text-2xl md:text-4xl font-bold leading-tight"
                 >
-                  {metric.value}
+                  {stat.value}
                 </motion.span>
                 <motion.span 
                   style={{ color: textSub }} 
-                  className="text-[10px] md:text-xs font-medium tracking-widest mt-0.5"
+                  className="text-[10px] md:text-xs font-medium text-center px-2 mt-0.5"
                 >
-                  {metric.label}
+                  {stat.label}
                 </motion.span>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Action Button */}
-          <motion.button
-            style={{ backgroundColor: btnBg, color: btnText }}
-            whileTap={{ scale: 0.98 }}
-            className="group flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-bold transition-all w-full md:w-auto"
-          >
-            View Case Studies
-            <ArrowUpRight className="w-4 h-4" />
-          </motion.button>
+          {/* Action Button - Dynamic Link */}
+          <Link href={`/works/case-study/${study.slug}`} className="w-full md:w-auto">
+            <motion.button
+              style={{ backgroundColor: btnBg, color: btnText }}
+              whileTap={{ scale: 0.98 }}
+              className="group flex items-center justify-center gap-2 px-8 py-3 rounded-full text-xs font-bold transition-all w-full"
+            >
+              View Case Study
+              <ArrowUpRight className="w-4 h-4" />
+            </motion.button>
+          </Link>
         </div>
       </motion.div>
     </motion.div>
@@ -184,8 +118,8 @@ export default function StickyServices() {
   return (
     <div className="relative w-full bg-black px-0 md:px-6 py-0">
       <div className="w-full max-w-6xl mx-auto flex flex-col gap-4 md:gap-8 pb-[10vh] mt-4">
-        {serviceData.map((service) => (
-          <ServiceCard key={service.id} service={service} />
+        {caseStudies.map((study) => (
+          <ServiceCard key={study.slug} study={study} />
         ))}
       </div>
     </div>
