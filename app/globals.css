@@ -14,16 +14,16 @@
 /* 2. Import Tailwind */
 @import "tailwindcss";
 
-/* 3. Map GT Walsheim to the 'font-sans' variable */
+/* 3. Map SF Pro to the 'font-sans' variable */
 @theme {
-  --font-sans: "GT Walsheim", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "SF Pro", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* --- Your existing styles --- */
 
 @layer base {
   body {
-    /* font-sans now points to GT Walsheim */
+    /* font-sans now points to SF Pro */
     @apply bg-[#000000] text-white font-sans text-base;
   }
 
