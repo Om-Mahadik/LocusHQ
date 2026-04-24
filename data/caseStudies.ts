@@ -112,7 +112,7 @@ export const caseStudies = [
     title: "Why HVAC businesses get high CPL and low close rates",
     subtitle: "The acquisition and qualification failures that drain home service businesses — and the revenue system that fixes both simultaneously.",
 
-    heroImage: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80",
+    heroImage: "./imgs/service-2.png",
 
     stats: [
       {
