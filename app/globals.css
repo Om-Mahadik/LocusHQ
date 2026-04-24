@@ -1,29 +1,31 @@
-/* 1. Define Local Font Faces (Using the OTF files you extracted) */
+/* 1. Define Local Font Faces (FIXED: consistent naming + safe paths) */
 @font-face {
-  font-family: 'SF Pro';
-  src: url('/fonts/sanf-pro/SF-Pro-Text-Regular.otf') format('opentype');
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/satoshi-regular.otf') format('opentype');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'SF Pro';
-  src: url('/fonts/sanf-pro/SF-Pro-Text-Bold.otf') format('opentype');
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/satoshi-bold.otf') format('opentype');
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* 2. Import Tailwind */
 @import "tailwindcss";
 
-/* 3. Map SF Pro to the 'font-sans' variable */
+/* 3. Map Satoshi to Tailwind font system */
 @theme {
-  --font-sans: "SF Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-/* --- Your existing styles --- */
-
+/* --- Base Styles --- */
 @layer base {
   body {
-    /* font-sans now points to SF Pro */
     @apply bg-[#000000] text-white font-sans text-base;
   }
 
@@ -34,11 +36,13 @@
   small { @apply text-sm text-gray-500; }
 }
 
+/* --- Utilities --- */
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
+/* --- Components --- */
 @layer components {
   .container-custom { @apply w-full mx-auto px-4 sm:px-6 md:px-10 lg:max-w-7xl; }
   .section { @apply py-16 md:py-20; }
