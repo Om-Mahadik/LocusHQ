@@ -1,35 +1,31 @@
-/* 1. Define Local Font Faces (FIXED: correct naming + better format support) */
+/* 1. Define Local Font Faces (Using the OTF files you extracted) */
 @font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi/Satoshi-Regular.woff2') format('woff2'),
-       url('/fonts/Satoshi/Satoshi-Regular.woff') format('woff'),
-       url('/fonts/Satoshi/Satoshi-Regular.otf') format('opentype');
+  font-family: 'GT Walsheim';
+  src: url('/fonts/sanf-pro/SF-Pro-Text-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi/Satoshi-Bold.woff2') format('woff2'),
-       url('/fonts/Satoshi/Satoshi-Bold.woff') format('woff'),
-       url('/fonts/Satoshi/Satoshi-Bold.otf') format('opentype');
+  font-family: 'GT Walsheim';
+  src: url('/fonts/sanf-pro/SF-Pro-Display-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
 }
 
 /* 2. Import Tailwind */
 @import "tailwindcss";
 
-/* 3. Map font correctly */
+/* 3. Map GT Walsheim to the 'font-sans' variable */
 @theme {
-  --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: "GT Walsheim", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* --- Base Styles --- */
+/* --- Your existing styles --- */
+
 @layer base {
   body {
+    /* font-sans now points to GT Walsheim */
     @apply bg-[#000000] text-white font-sans text-base;
   }
 
@@ -40,13 +36,11 @@
   small { @apply text-sm text-gray-500; }
 }
 
-/* --- Utilities --- */
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
-/* --- Components --- */
 @layer components {
   .container-custom { @apply w-full mx-auto px-4 sm:px-6 md:px-10 lg:max-w-7xl; }
   .section { @apply py-16 md:py-20; }
