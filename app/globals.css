@@ -1,7 +1,7 @@
 /* 1. Define Local Font Faces (FIXED: consistent naming + safe paths) */
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/satoshi/satoshi-regular.otf') format('opentype');
+  src: url('/fonts/satoshi/Satoshi-regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'Satoshi';
-  src: url('/fonts/satoshi/satoshi-bold.otf') format('opentype');
+  src: url('/fonts/satoshi/Satoshi-bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
