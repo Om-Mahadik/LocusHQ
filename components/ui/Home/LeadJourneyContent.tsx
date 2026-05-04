@@ -13,10 +13,10 @@ export default function LeadJourneyContent() {
   return (
     <div className="flex flex-col items-center md:items-start max-w-7xl mx-auto font-sans antialiased">
       {/* Main Headline - Styled to match ProcessFlow's 4xl/6xl look */}
-      <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight md:leading-tight tracking-tighter mb-6 text-center md:text-left">
-        Every prospect enters a system,<br className="hidden md:block" />
-        Not spreadsheets.
-      </h2>
+<h2 className="text-3.5xl md:text-6xl font-bold text-white leading-tight md:leading-tight tracking-tighter mb-6 text-center md:text-left">
+  Every prospect enters a system,
+  <span className="block">Not spreadsheets.</span>
+</h2>
 
       {/* Description Body - Styled to match ProcessFlow's zinc-400 subheader */}
       <p className="text-zinc-400 text-base md:text-xl font-normal leading-relaxed text-center md:text-left md:text-justify [text-justify:inter-word] mb-10 max-w-2xl">

@@ -71,6 +71,9 @@ export default function InfoSection() {
   const row1Extended = repeatArray(row1, 8); 
   const row2Extended = repeatArray(row2, 10); 
 
+  // Combined header styles to ensure consistency
+  const headerStyles = "text-[30px] sm:text-[34px] md:text-[38px] font-bold text-white leading-[1.1] tracking-tighter";
+
   return (
     <section className="w-full bg-black py-16 px-4 overflow-hidden">
       
@@ -101,19 +104,21 @@ export default function InfoSection() {
         className="max-w-4xl mx-auto bg-[#0A0A0A] rounded-[40px] md:rounded-[50px] py-12 md:py-20 border border-white/5 flex flex-col items-center text-center shadow-2xl overflow-hidden relative"
       >
         <div className="px-8 md:px-20 mb-10 md:mb-14 relative z-10 max-w-3xl flex flex-col items-center">
-          <motion.h3 variants={itemVariants} className="text-[22px] md:text-[34px] font-medium text-white leading-tight">
+          {/* Headline 1 */}
+          <motion.h3 variants={itemVariants} className={headerStyles}>
             We don&apos;t run ads.
           </motion.h3>
-          <motion.h3 variants={itemVariants} className="text-[22px] md:text-[34px] font-medium text-white leading-tight">
+          {/* Headline 2 */}
+          <motion.h3 variants={itemVariants} className={headerStyles}>
             We engineer the journey.
           </motion.h3>
           
-          {/* Subtext updated with text-justify */}
+          {/* Subtext - Adjusted to match the CTA subheadline feel */}
           <motion.p 
             variants={itemVariants} 
-            className="text-[14px] md:text-[28px] font-regular text-white/90 leading-[1.3] mt-8 text-center"
+            className="text-[15px] md:text-[18px] font-medium text-white/70 leading-relaxed mt-8 text-center max-w-2xl tracking-tight"
           >
-            From the first scroll to the signed contract - paid media, AI automation, and conversion systems that work while you sleep.
+            From the first scroll to the signed contract — paid media, AI automation, and conversion systems that work while you sleep.
           </motion.p>
         </div>
 

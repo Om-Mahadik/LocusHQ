@@ -7,7 +7,7 @@ export const caseStudies = [
     title: "Why restaurants get traffic but never fill their tables",
     subtitle: "A look at the exact revenue gaps we find in hospitality businesses — and the full-stack system we deploy to close them.",
 
-    heroImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+    heroImage: "/imgs/se1.jpeg",
 
     stats: [
       {
@@ -112,7 +112,7 @@ export const caseStudies = [
     title: "Why HVAC businesses get high CPL and low close rates",
     subtitle: "The acquisition and qualification failures that drain home service businesses — and the revenue system that fixes both simultaneously.",
 
-    heroImage: "./imgs/service-2.png",
+    heroImage: "/imgs/se2.jpeg",
 
     stats: [
       {
@@ -206,7 +206,7 @@ export const caseStudies = [
     title: "Why dental clinics pay for leads that never show up",
     subtitle: "The qualification and show-rate failures costing cosmetic dental practices revenue every week — and the system that solves both.",
 
-    heroImage: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80",
+    heroImage: "/imgs/se3.jpeg",
 
     stats: [
       {
@@ -301,7 +301,7 @@ export const caseStudies = [
     title: "Why medspas acquire clients but struggle to keep them",
     subtitle: "The acquisition and retention failures in aesthetic businesses — and the revenue system that converts one-time bookings into repeat clients.",
 
-    heroImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+    heroImage: "/imgs/se4.jpeg",
 
     stats: [
       {
@@ -396,7 +396,7 @@ export const caseStudies = [
     title: "Why real estate leads go cold before agents ever call them",
     subtitle: "The speed and qualification failures that drain real estate acquisition budgets — and the pipeline system built for a long buying cycle.",
 
-    heroImage: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80",
+    heroImage: "/imgs/se5.jpeg",
 
     stats: [
       {
@@ -491,7 +491,7 @@ export const caseStudies = [
     title: "Why immigration consultants waste half their time on unqualified leads",
     subtitle: "The intake and qualification failures draining immigration consulting practices — and the system that ensures consultants only speak to eligible, ready prospects.",
 
-    heroImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    heroImage: "/imgs/se6.jpeg",
 
     stats: [
       {

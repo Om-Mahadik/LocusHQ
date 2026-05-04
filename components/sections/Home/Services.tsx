@@ -20,7 +20,7 @@ export default function Services() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center space-y-4"
           >
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
+            <h2 className="text-3.5xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
               Six verticals. <br />
               One operating system.
             </h2>

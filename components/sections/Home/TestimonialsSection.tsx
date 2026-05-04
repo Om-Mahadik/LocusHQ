@@ -117,7 +117,7 @@ export default function TestimonialsSection() {
         
         {/* Header Section */}
         <motion.div variants={fadeInUp} className="text-center mb-12 flex flex-col items-center">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
+          <h2 className="text-3.5xl md:text-5xl font-bold tracking-tighter text-white mb-6">
             Client Success
           </h2>
           <div className="flex items-center gap-3 rounded-full bg-zinc-900/50 border border-white/10 px-5 py-2 backdrop-blur-sm">

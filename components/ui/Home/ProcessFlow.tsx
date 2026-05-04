@@ -44,7 +44,7 @@ export default function ProcessFlow() {
           
           {/* --- LEFT COLUMN --- */}
           <div className="md:col-span-1 flex flex-col justify-start text-center md:text-left md:sticky md:top-32">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
+            <h2 className="text-3.5xl md:text-6xl font-bold tracking-tighter mb-6 leading-tight">
               A simple setup that <br className="hidden md:block" />
               gets you moving fast
             </h2>

@@ -1,10 +1,6 @@
+// app/layout.tsx
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
-import { Inter } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-});
 
 export default function RootLayout({
   children,
@@ -13,7 +9,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      {/* Remove className={inter.className} */}
+      <body>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

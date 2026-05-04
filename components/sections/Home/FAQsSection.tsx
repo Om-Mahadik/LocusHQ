@@ -79,7 +79,7 @@ export default function FaqsSectionHome() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }} // Triggers when 100px into view
           variants={fadeInUp}
-          className="mb-10 text-center text-4xl md:text-5xl font-semibold tracking-tight text-white"
+          className="mb-10 text-center text-3.5xl md:text-5xl font-semibold tracking-tight text-white"
         >
           FAQs
         </motion.h2>

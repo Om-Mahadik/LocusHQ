@@ -13,6 +13,7 @@ import Stats from "@/components/sections/CaseStudy/Stats";
 import Three from "@/components/sections/CaseStudy/Three";
 import Two from "@/components/sections/CaseStudy/Two";
 import OtherStudies from "@/components/sections/CaseStudy/OtherStudies";
+import ImageSection from "@/components/ui/ImageSection";
 
 export default function CaseStudyPage() {
   const params = useParams();
@@ -34,24 +35,49 @@ export default function CaseStudyPage() {
       <Hero data={study} />
       
       <Stats stats={study.stats} />
+
+<ImageSection 
+  src="/imgs/se1-O.png" 
+  alt={`${study.title} - Case Study Image`} 
+  className="order-1 md:order-2" 
+/>
       
       <Overview 
         title={study.overviewTitle} 
         description={study.overviewDescription} 
       />
       
+<ImageSection 
+  src="/imgs/se1-A.png" 
+  alt={`${study.title} - Case Study Image`} 
+  className="order-1 md:order-2" 
+/>
       <One 
         title={study.OneTitle} 
         subtitle={study.OneSubtitle} 
         description={study.OneDescription} 
       />
-      
+
+
+<ImageSection 
+  src="/imgs/se1-B.png" 
+  alt={`${study.title} - Case Study Image`} 
+  className="order-1 md:order-2" 
+/>
+
       <Two 
         title={study.TwoTitle} 
         subtitle={study.TwoSubtitle} 
         description={study.TwoDescription} 
       />
-      
+
+
+<ImageSection 
+  src="/imgs/se1-C.png" 
+  alt={`${study.title} - Case Study Image`} 
+  className="order-1 md:order-2" 
+/>
+   
       <Three 
         title={study.ThreeTitle} 
         subtitle={study.ThreeSubtitle} 
@@ -59,6 +85,8 @@ export default function CaseStudyPage() {
         stats={study.stats} // CRITICAL: This was likely missing
       />
       
+  
+
       <FAQs 
         title={study.faqsTitle} 
         faqs={study.faqs} 
