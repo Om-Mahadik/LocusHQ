@@ -89,7 +89,7 @@ const ServiceCard = ({ study }: { study: typeof caseStudies[0] }) => {
                 </motion.span>
                 <motion.span 
                   style={{ color: textSub }} 
-                  className="text-[10px] md:text-xs font-medium text-center px-2 mt-0.5"
+                  className="text-[12px] md:text-xs font-medium text-center px-2 mt-0.5"
                 >
                   {stat.label}
                 </motion.span>

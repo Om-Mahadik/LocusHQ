@@ -51,7 +51,7 @@ export default function Hero({ data }: HeroProps) {
         transition={{ delay: 0.2, duration: 1 }}
         className="relative z-10 w-full max-w-6xl mb-0"
       >
-        <div className="relative aspect-[4/3] md:aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 shadow-2xl">
+        <div className="relative aspect-[5/3] md:aspect-[5/3] w-full overflow-hidden rounded-2xl border border-white/5 bg-zinc-900 shadow-2xl">
           <img 
             src={data.heroImage} 
             alt={data.title}

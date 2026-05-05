@@ -23,7 +23,7 @@ export const LogoSlider = () => {
     <div className="bg-black py-4 w-full overflow-hidden">
       {/* Header Text */}
       <div className="text-center mb-10">
-        <span className="text-gray-1000 text-[12px] font-regular tracking-widest">
+        <span className="text-white text-[14px] font-medium">
           Brands we have grown
         </span>
       </div>

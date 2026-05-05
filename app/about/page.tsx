@@ -5,6 +5,7 @@ import ComparisonTable from '@/components/sections/About/ComparisionTable';
 import Metrics from '@/components/sections/About/Metrics';
 import Principles from '@/components/sections/About/Principles';
 import TeamStructure from '@/components/sections/About/TeamStructure';
+import ContactSection from '@/components/sections/Contact/ContactSection';
 
 export default function AboutPage() {
   return (
@@ -15,6 +16,7 @@ export default function AboutPage() {
       <ComparisonTable />
       <BuildLayers />
       <Principles />
+      <ContactSection />
     </main>
   );
 }

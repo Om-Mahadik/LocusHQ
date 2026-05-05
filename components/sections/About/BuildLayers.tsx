@@ -1,4 +1,7 @@
-// components/sections/About/BuildLayers.tsx
+"use client";
+
+import { motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const layers = [
   {
@@ -24,27 +27,60 @@ const layers = [
 ];
 
 export default function BuildLayers() {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Small timeout ensures the browser has painted the SSR version 
+    // before we switch to animation mode
+    const timer = setTimeout(() => setIsReady(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const revealVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.21, 0.45, 0.32, 0.9],
+        delay: i * 0.1, // Handle delay inside the variant
+      },
+    }),
+  };
+
   return (
-    <section className="w-full bg-black pt-12 md:pt-16 pb-20 md:pb-32 font-sans antialiased">
-      {/* Reduced pt-24/32 to pt-12/16 to tighten space from the previous section */}
+    <section className="w-full bg-black pt-12 md:pt-16 pb-5 md:pb-32 font-sans antialiased overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Header Section - Reduced mb-16/24 to mb-10/12 */}
-        <div className="mb-10 md:mb-12 text-center flex flex-col items-center">
-          <h2 className="text-[30px] md:text-[52px] font-bold tracking-tighter text-white leading-[1.1] max-w-4xl">
+        {/* Header Section */}
+        <motion.div 
+          className="mb-10 md:mb-12 text-center flex flex-col items-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={revealVariants}
+          custom={0} // Index 0 for header
+        >
+          <h2 className="text-[32px] md:text-[52px] font-bold tracking-tighter text-white leading-[1.1] max-w-4xl">
             What we build for every account.
           </h2>
-          <p className="mt-4 text-white/70 text-[15px] md:text-[18px] font-normal max-w-[480px] leading-relaxed tracking-tight">
+          <p className="mt-4 text-white/70 text-[16px] md:text-[18px] font-normal max-w-[480px] leading-relaxed tracking-tight">
             Four layers that connect to form one revenue system.
           </p>
-        </div>
+        </motion.div>
 
         {/* Pinterest Style Column Layout */}
         <div className="columns-1 md:columns-2 gap-8 space-y-8">
-          {layers.map((layer, index) => (
-            <div 
+          {isReady && layers.map((layer, index) => (
+            <motion.div 
               key={index}
-              className="break-inside-avoid rounded-[40px] p-8 md:p-14 border border-white/5 flex flex-col items-center text-center h-fit bg-[#0A0A0A] shadow-2xl transition-colors hover:border-white/10"
+              custom={index} // Pass index to variant
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={revealVariants}
+              className="break-inside-avoid rounded-[40px] p-8 md:p-14 border border-white/5 flex flex-col items-center text-center h-fit bg-[#0A0A0A] shadow-2xl transition-all duration-500 hover:border-white/20 hover:bg-[#0F0F0F]"
             >
               {layer.highlight && (
                 <span className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-none">
@@ -59,7 +95,7 @@ export default function BuildLayers() {
               <p className="text-white/50 text-[15px] md:text-[16px] leading-relaxed max-w-md text-justify font-medium">
                 {layer.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

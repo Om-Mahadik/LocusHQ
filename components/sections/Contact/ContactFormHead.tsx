@@ -39,7 +39,7 @@ export default function ContactFormHead() {
         {/* Made heading smaller: text-4xl to 6xl range */}
         <motion.h1 
           variants={fadeInUp}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter leading-[1.1] text-center md:text-left"
+          className="text-3.5xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter leading-[1.1] text-center md:text-left"
         >
           Let&apos;s diagnose your <br className="hidden md:block" /> revenue system.
         </motion.h1>

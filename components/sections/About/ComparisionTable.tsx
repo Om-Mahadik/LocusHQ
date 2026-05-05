@@ -1,6 +1,8 @@
-// components/sections/About/ComparisonTable.tsx
+"use client";
 
 import { Check, X } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const comparisonData = [
   {
@@ -34,77 +36,134 @@ const comparisonData = [
 ];
 
 export default function ComparisonTable() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  if (!mounted) return null;
+
   return (
-    <section className="w-full bg-black py-16 md:py-24 font-sans antialiased">
+    // Reduced pt-16 to pt-4 and pb-20/pb-32 to pb-0 to remove space above and below
+    <section className="w-full bg-black pt-4 pb-0 font-sans antialiased overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        
         {/* Header Section */}
-        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
-          <h2 className="text-[30px] md:text-[52px] font-bold tracking-tighter text-white leading-[1.1]">
-            Traditional Marketing vs LocusHQ
+        <motion.div
+          className="text-center mb-12 md:mb-16 flex flex-col items-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={fadeInUp}
+        >
+          <h2 className="text-[32px] md:text-[52px] font-bold tracking-tighter text-white leading-[1.1]">
+            LocusHQ vs Traditional
           </h2>
-          <p className="mt-6 text-white/70 text-[15px] md:text-[18px] font-normal max-w-[480px] leading-relaxed tracking-tight">
+          <p className="mt-4 text-white/50 text-[16px] md:text-[18px] max-w-[480px]">
             What changes when the model is built around revenue — not retainer hours.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Two Tables Container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        {/* Mobile: Horizontal Scroll with "Peek" | Desktop: Grid */}
+        <div className="flex overflow-x-auto pb-8 snap-x snap-mandatory gap-4 -mx-6 px-6 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           
-          {/* Traditional Card - Flat and Muted */}
-          <div className="overflow-hidden rounded-[32px] border border-white/5 bg-[#080808] flex flex-col">
-            <div className="px-8 py-10 border-b border-white/5 text-center md:text-left">
-              <h3 className="text-xl md:text-2xl font-bold text-white/30 tracking-tight uppercase">
-                Traditional
-              </h3>
-            </div>
-            
-            <div className="flex flex-col flex-grow">
-              {comparisonData.map((item, index) => (
-                <div 
-                  key={index} 
-                  className={`flex items-start gap-5 px-8 py-6 text-white/30 ${
-                    index !== comparisonData.length - 1 ? "border-b border-white/5" : ""
-                  }`}
-                >
-                  <div className="mt-1 flex-shrink-0">
-                    <X size={16} className="text-red-900/50" />
-                  </div>
-                  <span className="text-[15px] md:text-[16px] font-normal leading-snug">
-                    {item.traditional}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* LocusHQ Card - Flat and High Contrast */}
-          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#0A0A0A] flex flex-col">
-            <div className="px-8 py-10 border-b border-white/10 text-center md:text-left">
-              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight uppercase">
+          {/* 1. LocusHQ Card */}
+          <motion.div
+            className="min-w-[85vw] md:min-w-0 snap-center overflow-hidden rounded-[24px] border border-white/20 bg-[#0A0A0A] flex flex-col relative"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            {/* Title: Centered on mobile, left on PC | Removed Badge */}
+            <div className="px-6 py-8 border-b border-white/10 text-center md:text-left">
+              <h3 className="text-lg md:text-xl font-bold text-white uppercase tracking-widest">
                 LocusHQ
               </h3>
             </div>
 
-            <div className="flex flex-col flex-grow">
+            <motion.div 
+              className="flex flex-col"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {comparisonData.map((item, index) => (
-                <div 
-                  key={index} 
-                  className={`flex items-start gap-5 px-8 py-6 text-white ${
-                    index !== comparisonData.length - 1 ? "border-b border-white/5" : ""
-                  }`}
+                <motion.div
+                  key={`locus-${index}`}
+                  variants={fadeInUp}
+                  className="flex items-start gap-4 px-6 py-5 text-white border-b border-white/5 last:border-b-0"
                 >
-                  <div className="mt-1 flex-shrink-0">
-                    <Check size={16} className="text-green-600" strokeWidth={3} />
-                  </div>
-                  <span className="text-[15px] md:text-[17px] font-bold leading-snug tracking-tight">
+                  {/* Green Ticks */}
+                  <Check size={16} className="text-green-500 mt-1 shrink-0" strokeWidth={3} />
+                  <span className="text-[15px] md:text-[16px] font-semibold leading-tight">
                     {item.locus}
                   </span>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
+          {/* 2. Traditional Card */}
+          <motion.div
+            className="min-w-[85vw] md:min-w-0 snap-center overflow-hidden rounded-[24px] border border-white/5 bg-[#111] flex flex-col opacity-60 md:opacity-100"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            {/* Title: Centered on mobile, left on PC */}
+            <div className="px-6 py-8 border-b border-white/5 text-center md:text-left">
+              <h3 className="text-lg md:text-xl font-bold text-white/30 uppercase tracking-widest">
+                Traditional
+              </h3>
+            </div>
+
+            <motion.div 
+              className="flex flex-col"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {comparisonData.map((item, index) => (
+                <motion.div
+                  key={`trad-${index}`}
+                  variants={fadeInUp}
+                  className="flex items-start gap-4 px-6 py-5 text-white/30 border-b border-white/5 last:border-b-0"
+                >
+                  {/* Red Cross */}
+                  <X size={16} className="text-red-500 mt-1 shrink-0" strokeWidth={3} />
+                  <span className="text-[14px] md:text-[15px] font-normal leading-tight">
+                    {item.traditional}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

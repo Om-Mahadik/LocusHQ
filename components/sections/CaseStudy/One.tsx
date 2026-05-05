@@ -3,30 +3,46 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Define the interface to match the props passed from the main page
 interface OneProps {
   title: string;
   subtitle: string;
   description: string[];
+  img?: string; 
 }
 
-export default function One({ title, subtitle, description }: OneProps) {
-  // Safety check
+export default function One({ title, subtitle, description, img }: OneProps) {
   if (!title) return null;
 
   return (
-    <section className="bg-[#000000] px-6 py-12 md:py-24 border-t border-white/5">
+    <section className="bg-[#000000] border-t border-white/5 px-6 py-12 md:py-24">
       <div className="mx-auto max-w-5xl">
         
-        {/* Layout: Centered on Mobile, Side-by-Side on PC */}
+        {/* Image: Slides from bottom to top on scroll */}
+        {img && (
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }} // Increased Y for a more pronounced "slide up"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }} // Triggers slightly before it hits center screen
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="w-full mb-12 md:mb-16 rounded-2xl md:rounded-[20px] overflow-hidden border border-white/5"
+          >
+            <img 
+              src={img} 
+              alt={title} 
+              className="w-full h-auto block" 
+            />
+          </motion.div>
+        )}
+
+        {/* Content Layout */}
         <div className="flex flex-col md:flex-row gap-10 md:gap-20">
           
-          {/* Header Block (Title + Subtitle) */}
+          {/* Header Block: Slides from bottom to top */}
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
             className="w-full md:w-2/5 text-center md:text-left"
           >
             <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-white leading-tight mb-4">
@@ -37,12 +53,12 @@ export default function One({ title, subtitle, description }: OneProps) {
             </p>
           </motion.div>
 
-          {/* Description Block - Dynamic mapping */}
+          {/* Description Block: Slides from bottom to top with slight delay */}
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full md:w-3/5 space-y-6"
           >
             {description.map((paragraph, index) => (

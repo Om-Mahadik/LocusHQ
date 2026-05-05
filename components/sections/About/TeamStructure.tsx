@@ -1,4 +1,7 @@
 // components/sections/About/TeamStructure.tsx
+"use client";
+
+import { motion, Variants } from 'framer-motion';
 
 const features = [
   {
@@ -24,20 +27,49 @@ const features = [
 ];
 
 export default function TeamStructure() {
+  
+  const upwardReveal: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8, 
+        ease: [0.21, 0.45, 0.32, 0.9] 
+      }
+    }
+  };
+
+  const staggerContainer: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
   return (
-    <section className="w-full bg-black text-white py-0 font-sans antialiased">
-      {/* Changed py-20/32 to py-0 to collapse the section space */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-16 lg:gap-24 pt-10 pb-0">
-        {/* Managed top/bottom space strictly within the container (pb-0 removes space below) */}
+    <section className="w-full bg-black text-white py-0 font-sans antialiased overflow-hidden">
+      {/* Reduced pb-20 to pb-8 to tighten the bottom gap */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-16 lg:gap-24 pt-10 pb-8">
         
         {/* Left Side: Narrative */}
-        <div className="lg:w-1/2 flex flex-col items-center lg:items-start">
+        <motion.div 
+          className="lg:w-1/2 flex flex-col items-center lg:items-start"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={upwardReveal}
+        >
           <h2 className="text-[30px] md:text-[42px] font-bold leading-[1.1] tracking-tighter text-center lg:text-left max-w-xl">
             A decade of running campaigns. Rebuilt as a revenue growth system.
           </h2>
           
-          <div className="mt-10 space-y-8 text-white/70 text-[15px] md:text-[17px] leading-relaxed max-w-xl text-justify">
-            <div className="w-full">
+          <div className="mt-10 space-y-8 text-white/70 text-[15px] md:text-[17px] leading-relaxed max-w-xl text-justify [text-justify:inter-word] [hyphens:auto]">
+            <div>
               <span className="text-white font-bold text-lg md:text-xl block mb-3 tracking-tight text-center lg:text-left">
                 Most operators run ads and call it done.
               </span> 
@@ -51,20 +83,27 @@ export default function TeamStructure() {
               Our team combines senior-level paid media management with an automation engineering function and a revenue strategy layer that connects ad spend to actual closed business.
             </p>
 
-            <p className="font-medium text-white/90">
+            <p className="font-medium text-white/90 text-center lg:text-left">
               We manage account budgets ranging from 
-              <span className="text-white font-black px-1 underline decoration-blue-600/50 underline-offset-4"> $5K to $50K </span> 
-              in monthly ad spend with deep niche playbooks for each vertical.
+              <span className="text-white font-black px-1 underline decoration-blue-600/50 underline-offset-4 mx-1 whitespace-nowrap"> $5K to $50K </span> 
+              in monthly ad spend.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Side: Features List */}
-        <div className="lg:w-1/2 flex flex-col justify-center">
+        <motion.div 
+          className="lg:w-1/2 flex flex-col justify-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
           <div className="space-y-12">
             {features.map((item, index) => (
-              <div 
+              <motion.div 
                 key={index} 
+                variants={upwardReveal} 
                 className={`flex items-start gap-6 md:gap-10 pb-8 text-left ${
                   index !== features.length - 1 ? "border-b border-white/5" : ""
                 }`}
@@ -81,11 +120,10 @@ export default function TeamStructure() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );

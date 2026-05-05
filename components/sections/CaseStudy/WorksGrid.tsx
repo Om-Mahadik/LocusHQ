@@ -19,7 +19,7 @@ const ServiceCard = ({ study }: { study: typeof caseStudies[0] }) => {
         
         {/* Left: Image Container - Responsive Aspect Ratios */}
         <div className="w-full lg:w-[42%] shrink-0">
-          <div className="relative w-full aspect-[16/10] lg:aspect-square lg:h-full rounded-2xl overflow-hidden">
+          <div className="relative w-full aspect-[1/1] lg:aspect-square lg:h-full rounded-2xl overflow-hidden">
             <img
               src={study.heroImage}
               alt={study.title}
@@ -42,7 +42,7 @@ const ServiceCard = ({ study }: { study: typeof caseStudies[0] }) => {
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-4 leading-tight">
               {study.title}
             </h3>
-            <p className="text-zinc-400 text-sm md:text-base leading-relaxed line-clamp-3 lg:max-w-[95%]">
+            <p className="text-zinc-300 text-sm md:text-base leading-relaxed line-clamp-3 lg:max-w-[95%]">
               {study.subtitle}
             </p>
           </div>
@@ -54,10 +54,10 @@ const ServiceCard = ({ study }: { study: typeof caseStudies[0] }) => {
                 key={idx} 
                 className="flex flex-col items-center lg:items-start justify-center py-4 px-3 border-r border-b border-zinc-800/50 text-center lg:text-left"
               >
-                <span className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1">
+                <span className="text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-1">
                   {stat.value}
                 </span>
-                <span className="text-[10px] md:text-[11px] font-normal text-zinc-500 leading-tight max-w-[120px] lg:max-w-none">
+                <span className="text-[12px] md:text-[11px] font-normal text-zinc-400 leading-tight max-w-[120px] lg:max-w-none">
                   {stat.label}
                 </span>
               </div>
@@ -69,7 +69,7 @@ const ServiceCard = ({ study }: { study: typeof caseStudies[0] }) => {
             <Link href={`/works/case-study/${study.slug}`} className="w-full md:w-auto">
               <motion.button
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-xs font-bold bg-white text-black hover:bg-zinc-200 transition-colors w-full"
+                className="flex items-center justify-center gap-2 px-10 py-4 rounded-full text-s font-bold bg-white text-black hover:bg-zinc-200 transition-colors w-full"
               >
                 View Case Study
                 <ArrowUpRight className="w-4 h-4" />

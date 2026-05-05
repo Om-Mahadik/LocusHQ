@@ -1,4 +1,7 @@
-// components/sections/About/Principles.tsx
+"use client";
+
+import { motion, Variants } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const principles = [
   {
@@ -19,47 +22,81 @@ const principles = [
 ];
 
 export default function Principles() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  if (!mounted) return null;
+
   return (
-    <section className="w-full bg-black text-white py-20 md:py-32 font-sans antialiased">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-16 lg:gap-32">
+    /* 
+       pt-12 adds the gap on mobile.
+       md:pt-0 removes it for desktop to stay flush.
+    */
+    <section className="w-full bg-black text-white pt-12 md:pt-0 pb-20 md:pb-32 font-sans antialiased overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-start gap-0 lg:gap-24">
         
-        {/* Left Side: Title & Subtitle */}
-        <div className="lg:w-[40%] flex flex-col items-center lg:items-start text-center lg:text-left">
-          <h2 className="text-[30px] md:text-[52px] font-bold leading-[1.1] tracking-tighter">
-            Three operating principles.
-          </h2>
-          <p className="mt-8 text-white/70 text-[15px] md:text-[18px] leading-relaxed max-w-[480px] tracking-tight">
-            The fundamental beliefs that guide every decision we make and every system we build.
-          </p>
+        {/* Left Side: Header */}
+        <div className="lg:w-[35%] mb-12 lg:mb-0">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            variants={fadeInUp}
+            className="flex flex-col items-center lg:items-start text-center lg:text-left"
+          >
+            <h2 className="text-[32px] md:text-[52px] font-bold leading-[1.05] tracking-tighter">
+              Three operating <br className="hidden md:block" /> principles.
+            </h2>
+            <p className="mt-6 text-white/60 text-[16px] md:text-[18px] leading-relaxed max-w-[380px]">
+              The fundamental beliefs that guide every decision we make and every system we build.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Right Side: Principles List */}
-        <div className="lg:w-[60%]">
-          <div className="space-y-12 md:space-y-16">
-            {principles.map((item, index) => (
-              <div 
-                key={index} 
-                className={`flex flex-col md:flex-row items-start gap-6 md:gap-10 pb-12 ${
-                  index !== principles.length - 1 ? "border-b border-white/5" : ""
-                }`}
-              >
-                {/* ID Number */}
-                <span className="text-xl md:text-2xl font-black text-white/30 tabular-nums shrink-0 mt-1 uppercase tracking-widest">
-                  {item.id}
-                </span>
-                
-                {/* Content */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tighter leading-none">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/50 text-[15px] md:text-[17px] leading-relaxed font-medium">
-                    {item.description}
-                  </p>
-                </div>
+        {/* Right Side: List */}
+        <div className="lg:w-[65%] flex flex-col">
+          {principles.map((item, index) => (
+            <motion.div 
+              key={item.id} 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeInUp}
+              className={`flex flex-col md:flex-row items-start gap-4 md:gap-10 pt-0 pb-10 md:pb-12 lg:pb-16 ${
+                index !== principles.length - 1 ? "border-b border-white/10 mb-10 md:mb-12" : ""
+              }`}
+            >
+              {/* ID Number */}
+              <span className="text-lg md:text-xl font-mono font-bold text-white/20 tabular-nums shrink-0 mt-1">
+                {item.id}
+              </span>
+              
+              {/* Content */}
+              <div className="space-y-3">
+                <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-none">
+                  {item.title}
+                </h3>
+                <p className="text-white/50 text-[16px] md:text-[17px] leading-relaxed max-w-2xl">
+                  {item.description}
+                </p>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
 
       </div>

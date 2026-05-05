@@ -35,57 +35,34 @@ export default function CaseStudyPage() {
       <Hero data={study} />
       
       <Stats stats={study.stats} />
-
-<ImageSection 
-  src="/imgs/se1-O.png" 
-  alt={`${study.title} - Case Study Image`} 
-  className="order-1 md:order-2" 
-/>
       
       <Overview 
         title={study.overviewTitle} 
-        description={study.overviewDescription} 
+        description={study.overviewDescription}
+        img={study.overviewImage} 
       />
       
-<ImageSection 
-  src="/imgs/se1-A.png" 
-  alt={`${study.title} - Case Study Image`} 
-  className="order-1 md:order-2" 
-/>
       <One 
         title={study.OneTitle} 
         subtitle={study.OneSubtitle} 
-        description={study.OneDescription} 
+        description={study.OneDescription}
+        img={study.OneImage}
       />
-
-
-<ImageSection 
-  src="/imgs/se1-B.png" 
-  alt={`${study.title} - Case Study Image`} 
-  className="order-1 md:order-2" 
-/>
 
       <Two 
         title={study.TwoTitle} 
         subtitle={study.TwoSubtitle} 
-        description={study.TwoDescription} 
+        description={study.TwoDescription}
+        img={study.TwoImage}
       />
-
-
-<ImageSection 
-  src="/imgs/se1-C.png" 
-  alt={`${study.title} - Case Study Image`} 
-  className="order-1 md:order-2" 
-/>
    
       <Three 
         title={study.ThreeTitle} 
         subtitle={study.ThreeSubtitle} 
         description={study.ThreeDescription} 
         stats={study.stats} // CRITICAL: This was likely missing
+        img={study.ThreeImage}
       />
-      
-  
 
       <FAQs 
         title={study.faqsTitle} 
