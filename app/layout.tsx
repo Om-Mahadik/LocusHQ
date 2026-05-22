@@ -56,8 +56,8 @@ export default function RootLayout({
               }}
             />
             
-            {/* Toggle this component based on payment status */}
-            <Watermark />
+            {/* Toggle this component based on payment status <Watermark /> */}
+            
           </>
         )}
 
